@@ -1,0 +1,18 @@
+hig(1) -- common access to revision control
+===========================================
+
+## SYNOPSIS
+
+## DESCRIPTION
+
+## OPTIONS
+
+## EXAMPLES
+
+## SEE ALSO
+
+git(1),
+hg(1),
+darcs(1),
+bzr(1),
+svn(1)

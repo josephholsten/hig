@@ -1,0 +1,17 @@
+#!/bin/sh
+# hig-rm - remove file from version control, leaving the
+# existing contents on disk
+
+case `hig format` in
+git )
+  CMD="git rm"
+  ;;
+svn )
+  CMD="svn delete --keep-local"
+  ;;
+hg )
+  CMD="hg remove --after --force"
+  ;;
+esac
+
+exec $CMD "$@"

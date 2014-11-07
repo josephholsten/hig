@@ -1,0 +1,16 @@
+#!/bin/sh
+
+case `hig format` in
+git )
+  CMD="git push"
+  ;;
+hg )
+  CMD="hg push"
+  ;;
+svn )
+  echo THIS IS NOT WHAT YOU WANT >&2
+  exit -1
+  ;;
+esac
+
+exec $CMD "$@"

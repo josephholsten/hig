@@ -1,0 +1,15 @@
+#!/bin/sh
+
+case `hig format` in
+git )
+  CMD="git diff"
+  ;;
+svn )
+  CMD="svn diff --git"
+  ;;
+hg )
+  CMD="hg diff --git"
+  ;;
+esac
+
+exec $CMD "$@"

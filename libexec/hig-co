@@ -1,0 +1,20 @@
+#!/bin/sh
+# hig-co: checkout
+
+. $_HIG_ROOT/lib/common.sh
+
+case `hig format` in
+git )
+  CMD="git checkout"
+  ;;
+hg )
+  CMD="hg checkout"
+  ;;
+svn )
+  fatal "Subversion checkout is probably not what you want"
+  ;;
+* )
+  fatal "Unknown repo format"
+esac
+
+exec $CMD "$@"

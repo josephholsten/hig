@@ -1,0 +1,23 @@
+#!/bin/sh
+# hig-get: get remote repo
+
+REPO=$1
+shift
+
+if expr $REPO : ".*\.git" >/dev/null; then
+  CMD="git clone"
+elif expr $REPO : "git:.*" >/dev/null; then
+  CMD="git clone"
+elif expr $REPO : "http.*" >/dev/null; then
+  if curl -sf $REPO/_darcs/format >/dev/null; then
+    CMD="darcs get"
+  elif curl -sf $REPO/info/refs >/dev/null; then
+    CMD="git clone"
+  elif curl -sf "$REPO?cmd=lookup&key=tip" >/dev/null; then
+    CMD="hg clone"
+  elif svn info --non-interactive --trust-server-cert $REPO >/dev/null; then
+    CMD="svn checkout"
+  fi
+fi
+
+exec $CMD $REPO "$@"

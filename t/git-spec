@@ -1,0 +1,31 @@
+#!/bin/sh
+# up vs pull?
+# git: repo
+REPO=git://git.kernel.org/pub/scm/git/git.git
+
+# git https: repo
+REPO=https://github.com/git/git
+
+# svn repo
+REPO=https://svn.apache.org/repos/asf/subversion/trunk
+
+# hg repo
+REPO=http://selenic.com/repo/hello
+
+# common
+hig get $REPO repo
+cd repo
+echo foo > foo
+hig add foo
+hig st
+hig ci -m 'initial'
+hig rm foo
+stat foo # hig-rm shouldn't delete file
+hig diff
+hig ci -m 'undo'
+hig co head~1
+hig log
+hig pull
+hig push
+cd ..
+rm -rf repo

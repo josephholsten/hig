@@ -1,0 +1,15 @@
+#!/bin/sh
+
+case `hig format` in
+git )
+  CMD="git status"
+  ;;
+svn )
+  CMD="svn status"
+  ;;
+hg )
+  CMD="hg status"
+  ;;
+esac
+
+exec $CMD "$@"
