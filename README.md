@@ -9,12 +9,12 @@ I work on many open source projects, which often means I must deal with their ve
 
 ## Opinions
 
-`ci` should commit all changes
-`rm` should not remove files from disk
-`diff` should use extended format
+* `ci` should commit all changes
+* `rm` should not remove files from disk
+* `diff` should use extended format
 
-Depends on modern versions of clients
-GPG support
+* require on modern versions of clients
+* GPG support
 
 ## Supports
 
