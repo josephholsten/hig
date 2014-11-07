@@ -2,6 +2,9 @@
 
 I work on many open source projects, which often means I must deal with their version control system. But for some reason, when I'm switching between `git` and `hg`, I end up typing `hig`. Thus this tool. It also provides a bunch of shorthands because of laziness.
 
+## Installation
+
+    brew install --HEAD https://raw.github.com/josephholsten/hig/master/hig.rb
 
 ## Opinions
 
