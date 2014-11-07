@@ -16,6 +16,19 @@ I work on many open source projects, which often means I must deal with their ve
 * require on modern versions of clients
 * GPG support
 
+## Commands
+
+* `ci`
+* `co`
+* `get`
+* `hig add`
+* `hig diff`
+* `hig log`
+* `hig rm`
+* `pull`
+* `push`
+* `st`
+
 ## Supports
 
 - git http://www.git-scm.com/
