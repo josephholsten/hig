@@ -4,7 +4,8 @@ I work on many open source projects, which often means I must deal with their ve
 
 ## Installation
 
-    brew install --HEAD https://raw.github.com/josephholsten/hig/master/hig.rb
+    brew tap josephholsten/josephholsten
+    brew install hig
 
 ## Opinions
 
