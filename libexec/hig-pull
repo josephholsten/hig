@@ -8,7 +8,7 @@ svn )
   CMD="svn update"
   ;;
 hg )
-  CMD="hg pull"
+  CMD="hg pull -u"
   ;;
 esac
 
