@@ -2,7 +2,7 @@
 
 case `hig format` in
 git )
-  CMD="git push --all"
+  CMD="git push --quiet"
   ;;
 hg )
   CMD="hg push"
