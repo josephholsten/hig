@@ -11,7 +11,7 @@ elif expr $REPO : "git:.*" >/dev/null; then
 elif expr $REPO : "http.*" >/dev/null; then
   if curl -sf $REPO/_darcs/format >/dev/null; then
     CMD="darcs get"
-  elif curl -sf $REPO/info/refs >/dev/null; then
+  elif curl -sf ${REPO}.git/info/refs >/dev/null; then
     CMD="git clone"
   elif curl -sf "$REPO?cmd=lookup&key=tip" >/dev/null; then
     CMD="hg clone"

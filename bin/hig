@@ -1,1 +1,80 @@
-../libexec/hig
+#!/bin/sh
+# hig - revision control, wrapped to behave identically for git, hg, svn, darcs & bzr
+# Provides get, add, rm, mv, ci, st, co, diff, push, pull.
+# Usually symlinked to provide ci, st, co, push & pull as standalone commands
+set -e
+
+log() {
+  echo "$@" >&2
+}
+
+debug() {
+  if [ -n "$DEBUG" ]; then
+    log "$@"
+  fi
+}
+
+fatal() {
+  log "$@"
+  exit 1
+}
+
+
+resolve_link() {
+  $(type -p greadlink readlink | head -1) "$1"
+}
+
+abs_dirname() {
+  local cwd="$(pwd)"
+  debug cwd=$cwd
+  local path="$1"
+  debug path=$path
+
+  while [ -n "$path" ]; do
+    debug dir="$(dirname $path)"
+    cd "$(dirname $path)"
+    local name="$(basename $path)"
+    debug name=$name
+    path="$(resolve_link "$name" || true)"
+    debug path=$path
+  done
+
+  debug pwd=$(pwd)
+  pwd
+  cd "$cwd"
+}
+
+debug '$0'=$0
+libexec_path="$(abs_dirname "$0")"
+debug libexec_path=$libexec_path
+
+export _HIG_ROOT="$(abs_dirname "$libexec_path")"
+debug _HIG_ROOT=$_HIG_ROOT
+
+export PATH="${libexec_path}:$PATH"
+
+base=$(basename $0)
+
+if [ x"hig" = x"$base" ]; then
+  command="$1"
+  shift
+else
+  command="$base"
+fi
+debug command=$command
+
+case "$command" in
+"" | "hig" | "-h" | "--help" )
+  exec hig-help
+  ;;
+* )
+  command_path="$(command -v "hig-$command" || true)"
+  debug command_path="$command_path"
+  if [ ! -x "$command_path" ]; then
+    fatal "hig: no such command \`$command'"
+  fi
+
+  debug exec "$command_path" "$@"
+  exec "$command_path" "$@"
+  ;;
+esac
