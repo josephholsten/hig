@@ -1,6 +1,8 @@
 #!/bin/sh
 # hig-get: get remote repo
 
+. $_HIG_ROOT/lib/common.sh
+
 REPO=$1
 shift
 
@@ -9,13 +11,14 @@ if expr $REPO : ".*\.git" >/dev/null; then
 elif expr $REPO : "git:.*" >/dev/null; then
   CMD="git clone"
 elif expr $REPO : "http.*" >/dev/null; then
-  if curl -sf $REPO/_darcs/format >/dev/null; then
+  debug 'http: repo'
+  if debug 'attempting darcs' && curl -sf $REPO/_darcs/format >/dev/null; then
     CMD="darcs get"
-  elif curl -sf ${REPO}.git/info/refs >/dev/null; then
+  elif debug 'attempting git' && curl -sf "${REPO}.git/info/refs?service=git-upload-pack" >/dev/null; then
     CMD="git clone"
-  elif curl -sf "$REPO?cmd=lookup&key=tip" >/dev/null; then
+  elif debug 'attempting hg' && curl -sf "$REPO?cmd=lookup&key=tip" >/dev/null; then
     CMD="hg clone"
-  elif svn info --non-interactive --trust-server-cert $REPO >/dev/null; then
+  elif debug 'attempting svn' && svn info --non-interactive --trust-server-cert $REPO >/dev/null; then
     CMD="svn checkout"
   fi
 fi
