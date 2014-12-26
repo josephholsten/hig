@@ -36,10 +36,16 @@ I work on many open source projects, which often means I must deal with their ve
 - svn https://subversion.apache.org/
 - bzr http://bazaar.canonical.com/en/
 
+## In Progress
+
+* cvs http://www.nongnu.org/cvs/
+cvs -d:pserver:anonymous@ex-vi.cvs.sourceforge.net:/cvsroot/ex-vi co ex-vi
+get  pserver:anonymous@ex-vi.cvs.sourceforge.net:/cvsroot/ex-vi
+
+
 ## Does not support
 
 - darcs http://darcs.net/
-* cvs http://www.nongnu.org/cvs/
 * rcs https://www.gnu.org/software/rcs/
 * sccs http://sccs.sourceforge.net/
 * camp http://projects.haskell.org/camp/

@@ -17,6 +17,10 @@ elif which bzr >/dev/null &&
     bzr info >/dev/null 2>&1; then
   echo bzr
   exit
+elif which cvs >/dev/null &&
+    test -x CVS &&
+    cvs st  >/dev/null 2>&1; then
+  echo bzr
 else
   echo Unknown repo format >&2
   exit -1

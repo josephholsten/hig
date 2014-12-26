@@ -10,6 +10,9 @@ if expr $REPO : ".*\.git" >/dev/null; then
   CMD="git clone"
 elif expr $REPO : "git:.*" >/dev/null; then
   CMD="git clone"
+elif expr $REPO : ":pserver:.*" > /dev/null; then
+  export CVSREPO=$REPO
+  CMD="cvs co"
 elif expr $REPO : "http.*" >/dev/null; then
   debug 'http: repo'
   if debug 'attempting darcs' && curl -sf $REPO/_darcs/format >/dev/null; then
@@ -22,5 +25,7 @@ elif expr $REPO : "http.*" >/dev/null; then
     CMD="svn checkout"
   fi
 fi
+
+# sccs copy $REPO .; sccs get .
 
 exec $CMD $REPO "$@"

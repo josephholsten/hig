@@ -12,4 +12,6 @@ hg )
   ;;
 esac
 
+# sccsdiff 
+
 exec $CMD "$@"
