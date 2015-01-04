@@ -19,13 +19,14 @@ elif expr $REPO : "http.*" >/dev/null; then
     CMD="darcs get"
   elif debug 'attempting git' && curl -sf "${REPO}.git/info/refs?service=git-upload-pack" >/dev/null; then
     CMD="git clone"
-  elif debug 'attempting hg' && curl -sf "$REPO?cmd=lookup&key=tip" >/dev/null; then
-    CMD="hg clone"
   elif debug 'attempting svn' && svn info --non-interactive --trust-server-cert $REPO >/dev/null; then
     CMD="svn checkout"
+  elif debug 'attempting hg' && curl -sf "$REPO?cmd=lookup&key=tip" >/dev/null; then
+    CMD="hg clone"
   fi
+else
+  echo "Unknown repo format: $REPO" >&2
+  exit 1
 fi
-
-# sccs copy $REPO .; sccs get .
 
 exec $CMD $REPO "$@"
