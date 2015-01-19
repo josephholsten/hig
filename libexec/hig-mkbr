@@ -1,0 +1,23 @@
+#!/bin/sh
+# hig-mkbr: make new branch
+
+. $_HIG_ROOT/lib/common.sh
+
+BRANCH=`shift`
+
+case `hig format` in
+git )
+  CMD="git checkout -b ${BRANCH}"
+  ;;
+hg )
+  CMD="hg branch ${BRANCH}"
+  ;;
+bzr )
+  CMD="bzr branch --switch ${BRANCH}"
+  ;;
+* )
+  fatal "Unknown repo format"
+  ;;
+esac
+
+exec $CMD "$@"

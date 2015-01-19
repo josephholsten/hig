@@ -1,0 +1,23 @@
+#!/bin/sh
+# hig-mktag: make new tag
+
+. $_HIG_ROOT/lib/common.sh
+
+TAG=`shift`
+
+case `hig format` in
+git )
+  CMD="git tag --quiet ${TAG}"
+  ;;
+hg )
+  CMD="hg tag ${TAG}"
+  ;;
+bzr )
+  CMD="bzr tag ${TAG}"
+  ;;
+* )
+  fatal "Unknown repo format"
+  ;;
+esac
+
+exec $CMD "$@"
