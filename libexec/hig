@@ -3,6 +3,9 @@
 # Provides get, add, rm, mv, ci, st, co, diff, push, pull.
 # Usually symlinked to provide ci, st, co, push & pull as standalone commands
 set -e
+if [ -n "$TRACE" ]; then
+	set -x
+fi
 
 log() {
   echo "$@" >&2
@@ -31,9 +34,10 @@ abs_dirname() {
   debug path=$path
 
   while [ -n "$path" ]; do
-    debug dir="$(dirname $path)"
-    cd "$(dirname $path)"
-    local name="$(basename $path)"
+		local nextdir="$(dirname "$path")"
+		debug nextdir=$nextdir
+    cd "$nextdir"
+    local name="$(basename "$path")"
     debug name=$name
     path="$(resolve_link "$name" || true)"
     debug path=$path
@@ -44,20 +48,22 @@ abs_dirname() {
   cd "$cwd"
 }
 
+# add our libexec to PATH
 debug '$0'=$0
 libexec_path="$(abs_dirname "$0")"
 debug libexec_path=$libexec_path
+export PATH="${libexec_path}:$PATH"
 
+# child, always remember where you came from
 export _HIG_ROOT="$(abs_dirname "$libexec_path")"
 debug _HIG_ROOT=$_HIG_ROOT
 
-export PATH="${libexec_path}:$PATH"
-
+# allow being called as `hig foo` or just `foo`
 base=$(basename $0)
-
+debug base=$base
 if [ x"hig" = x"$base" ]; then
   command="$1"
-  shift
+  shift || :  # allow shifting to nothing
 else
   command="$base"
 fi
