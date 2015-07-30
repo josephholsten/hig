@@ -16,7 +16,7 @@ bzr )
   CMD="bzr tag ${TAG}"
   ;;
 * )
-  fatal "Unknown repo format"
+  fatal "mktag: unknown command for repo type: `hig format`"
   ;;
 esac
 

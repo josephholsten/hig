@@ -14,7 +14,7 @@ hg )
   CMD="hg commit"
   ;;
 * )
-  fatal "ci: unknown command for repo type: `hig format"
+  fatal "ci: unknown command for repo type: `hig format`"
   ;;
 esac
 

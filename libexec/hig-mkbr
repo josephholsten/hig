@@ -16,7 +16,7 @@ bzr )
   CMD="bzr branch --switch ${BRANCH}"
   ;;
 * )
-  fatal "Unknown repo format"
+  fatal "mkbr: unknown command for repo type: `hig format`"
   ;;
 esac
 

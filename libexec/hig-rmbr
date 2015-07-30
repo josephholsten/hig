@@ -3,12 +3,14 @@
 
 . $_HIG_ROOT/lib/common.sh
 
+BRANCH=`shift`
+
 case `hig format` in
 git )
-  CMD="git branch -d"
+  CMD="git branch -d ${BRANCH}"
   ;;
 * )
-  fatal "Unknown repo format"
+  fatal "rmbr: unknown command for repo type: `hig format`"
   ;;
 esac
 

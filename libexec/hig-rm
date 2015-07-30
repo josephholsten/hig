@@ -12,6 +12,9 @@ svn )
 hg )
   CMD="hg remove --after --force"
   ;;
+* )
+  fatal "rm: unknown command for repo type: `hig format`"
+  ;;
 esac
 
 exec $CMD "$@"

@@ -11,6 +11,9 @@ svn )
   echo THIS IS NOT WHAT YOU WANT >&2
   exit -1
   ;;
+* )
+  fatal "push: unknown command for repo type: `hig format`"
+  ;;
 esac
 
 exec $CMD "$@"

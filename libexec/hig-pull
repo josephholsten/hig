@@ -10,6 +10,9 @@ svn )
 hg )
   CMD="hg pull -u"
   ;;
+* )
+  fatal "pull: unknown command for repo type: `hig format`"
+  ;;
 esac
 
 exec $CMD "$@"

@@ -14,7 +14,7 @@ svn )
   fatal "co: Subversion checkout is probably not what you want"
   ;;
 * )
-  fatal "co: unknown command for repo type: `hig format"
+  fatal "co: unknown command for repo type: `hig format`"
   ;;
 esac
 

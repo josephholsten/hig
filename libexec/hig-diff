@@ -10,6 +10,9 @@ svn )
 hg )
   CMD="hg diff --git"
   ;;
+* )
+  fatal "diff: unknown command for repo type: `hig format`"
+  ;;
 esac
 
 # sccsdiff 

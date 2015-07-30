@@ -10,6 +10,9 @@ svn )
 hg )
   CMD="hg log"
   ;;
+* )
+  fatal "log: unknown command for repo type: `hig format`"
+  ;;
 esac
 
 exec $CMD "$@"

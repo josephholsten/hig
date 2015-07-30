@@ -3,12 +3,14 @@
 
 . $_HIG_ROOT/lib/common.sh
 
+REF=`shift`
+
 case `hig format` in
 git )
-  CMD="git cherry-pick"
+  CMD="git cherry-pick ${REF}"
   ;;
 * )
-  fatal "pick: unknown command for repo format"
+  fatal "pick: unknown command for repo type: `hig format`"
   ;;
 esac
 

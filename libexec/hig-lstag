@@ -14,7 +14,7 @@ bzr )
   CMD="bzr tags"
   ;;
 * )
-  fatal "Unknown repo format"
+  fatal "lstag: unknown command for repo type: `hig format`"
   ;;
 esac
 
