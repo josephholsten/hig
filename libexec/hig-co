@@ -1,5 +1,5 @@
 #!/bin/sh
-# hig-co: checkout
+# hig-co: checkout files from a seperate branch
 
 . $_HIG_ROOT/lib/common.sh
 
@@ -11,10 +11,11 @@ hg )
   CMD="hg checkout"
   ;;
 svn )
-  fatal "Subversion checkout is probably not what you want"
+  fatal "co: Subversion checkout is probably not what you want"
   ;;
 * )
-  fatal "Unknown repo format"
+  fatal "co: unknown command for repo type: `hig format"
+  ;;
 esac
 
 exec $CMD "$@"

@@ -1,0 +1,15 @@
+#!/bin/sh
+# hig-pick: cherry pick a single patch
+
+. $_HIG_ROOT/lib/common.sh
+
+case `hig format` in
+git )
+  CMD="git cherry-pick"
+  ;;
+* )
+  fatal "pick: unknown command for repo format"
+  ;;
+esac
+
+exec $CMD "$@"

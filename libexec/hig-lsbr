@@ -11,7 +11,7 @@ hg )
   CMD="hg branches"
   ;;
 * )
-  fatal "Unknown repo format"
+  fatal "lsbr: unknown command for repo type: `hig format"
   ;;
 esac
 

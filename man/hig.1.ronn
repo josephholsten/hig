@@ -1,9 +1,51 @@
 hig(1) -- common access to revision control
 ===========================================
 
+## DESCRIPTION
+
+
+Unified access for version control systems including bzr(1), cvs(1), darcs(1), git(1), hg(1), svn(1).
+
 ## SYNOPSIS
 
-## DESCRIPTION
+`hg command [option...] [argument...]`
+
+Wraps the most common commands you will use in multiple systems. Supported commands are
+
+
+`hig get <repository> [<directory>]`
+
+`hig add <file|directory> ...`
+`hig rm <file|directory> ...`
+
+`hig ci [file|directory]...`
+`hig co [file|directory]...`
+`hig pull [repository]...`
+`hig push [repository]`
+
+`hig st [file|directory]...`
+`hig diff [file|directory]...`
+`hig log [file|directory]...`
+
+`hig chbr <branch>`
+`hig mkbr <branch>`
+`hig lsbr`
+`hig rmbr <branch>`
+
+`hig lstag`
+`hig mktag <tag>`
+
+`hig format`
+`hig help`
+
+`hig pick <ref>`
+
+# other stuff
+
+`hig mv <source> ... <destination>`
+`hig amend [file|directory]...`
+`hig rebase <ref>`
+`hig test [[initialization] command]`
 
 ## OPTIONS
 
@@ -11,8 +53,9 @@ hig(1) -- common access to revision control
 
 ## SEE ALSO
 
+bzr(1),
+cvs(1),
+darcs(1),
 git(1),
 hg(1),
-darcs(1),
-bzr(1),
 svn(1)

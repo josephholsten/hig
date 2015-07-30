@@ -1,4 +1,5 @@
 #!/bin/sh
+# hig-ci: commit changes to version history
 
 . $_HIG_ROOT/lib/common.sh
 
@@ -13,7 +14,8 @@ hg )
   CMD="hg commit"
   ;;
 * )
-  fatal "unknown repo format"
+  fatal "ci: unknown command for repo type: `hig format"
+  ;;
 esac
 
 debug CMD=$CMD
