@@ -1,4 +1,7 @@
 #!/bin/sh
+# hig-diff: show diff between current files and last version
+
+. $_HIG_ROOT/lib/common.sh
 
 case `hig format` in
 git )
@@ -15,6 +18,6 @@ hg )
   ;;
 esac
 
-# sccsdiff 
+# sccsdiff
 
 exec $CMD "$@"

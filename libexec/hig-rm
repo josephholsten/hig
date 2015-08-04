@@ -2,6 +2,8 @@
 # hig-rm - remove file from version control, leaving the
 # existing contents on disk
 
+. $_HIG_ROOT/lib/common.sh
+
 case `hig format` in
 git )
   CMD="git rm"
