@@ -5,7 +5,8 @@
 
 BRANCH=`shift`
 
-case `hig format` in
+fmt=`hig format`
+case $fmt in
 git )
   CMD="git checkout -b ${BRANCH}"
   ;;
@@ -16,7 +17,7 @@ bzr )
   CMD="bzr branch --switch ${BRANCH}"
   ;;
 * )
-  fatal "mkbr: unknown command for repo type: `hig format`"
+  fatal "mkbr: unknown command for repo type: $fmt"
   ;;
 esac
 

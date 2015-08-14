@@ -5,12 +5,13 @@
 
 REF=`shift`
 
-case `hig format` in
+fmt=`hig format`
+case $fmt in
 git )
   CMD="git cherry-pick ${REF}"
   ;;
 * )
-  fatal "pick: unknown command for repo type: `hig format`"
+  fatal "pick: unknown command for repo type: $fmt"
   ;;
 esac
 

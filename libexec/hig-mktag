@@ -5,7 +5,8 @@
 
 TAG=`shift`
 
-case `hig format` in
+fmt=`hig format`
+case $fmt in
 git )
   CMD="git tag --quiet ${TAG}"
   ;;
@@ -16,7 +17,7 @@ bzr )
   CMD="bzr tag ${TAG}"
   ;;
 * )
-  fatal "mktag: unknown command for repo type: `hig format`"
+  fatal "mktag: unknown command for repo type: $fmt"
   ;;
 esac
 

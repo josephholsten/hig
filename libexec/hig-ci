@@ -3,7 +3,8 @@
 
 . $_HIG_ROOT/lib/common.sh
 
-case `hig format` in
+fmt=`hig format`
+case $fmt in
 git )
   CMD="git commit -a"
   ;;
@@ -14,7 +15,7 @@ hg )
   CMD="hg commit"
   ;;
 * )
-  fatal "ci: unknown command for repo type: `hig format`"
+  fatal "ci: unknown command for repo type: $fmt"
   ;;
 esac
 

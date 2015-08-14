@@ -1,6 +1,10 @@
 #!/bin/sh
+# hig-log: list revision history
 
-case `hig format` in
+. $_HIG_ROOT/lib/common.sh
+
+fmt=`hig format`
+case $fmt in
 git )
   CMD="git log"
   ;;
@@ -11,7 +15,7 @@ hg )
   CMD="hg log"
   ;;
 * )
-  fatal "log: unknown command for repo type: `hig format`"
+  fatal "log: unknown command for repo type: $fmt"
   ;;
 esac
 
