@@ -8,7 +8,7 @@ TAG=`shift`
 fmt=`hig format`
 case $fmt in
 git )
-  CMD="git tag --quiet ${TAG}"
+  CMD="git tag ${TAG}"
   ;;
 hg )
   CMD="hg tag ${TAG}"

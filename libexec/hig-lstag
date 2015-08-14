@@ -6,7 +6,7 @@
 fmt=`hig format`
 case $fmt in
 git )
-  CMD="git tag --all"
+  CMD="git tag"
   ;;
 hg )
   CMD="hg tags"
