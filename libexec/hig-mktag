@@ -7,14 +7,14 @@ TAG=`shift`
 
 fmt=`hig format`
 case $fmt in
+bzr )
+  CMD="bzr tag ${TAG}"
+  ;;
 git )
   CMD="git tag ${TAG}"
   ;;
 hg )
   CMD="hg tag ${TAG}"
-  ;;
-bzr )
-  CMD="bzr tag ${TAG}"
   ;;
 * )
   fatal "mktag: unknown command for repo type: $fmt"

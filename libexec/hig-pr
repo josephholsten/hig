@@ -3,88 +3,46 @@
 
 . $_HIG_ROOT/lib/common.sh
 
-# sed with extended regular expressions
-esed() {
-    debug esed "$@"
-    # check for BSD sed
-    if (echo | sed -E >/dev/null 2>/dev/null); then
-        sed -E "$@"
-    # check for GNU sed
-    elif (echo | sed -r >/dev/null 2>/dev/null); then
-        sed -r "$@"
-    else
-        fatal "could not find BSD or GNU sed(1); it's needed for extended regular expressions"
-    fi
-}
-
-# yes, I'm "parsing" uris with regexp. It's not quite as bad as parsing HTML though:
-# http://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags/1732454#1732454
-
-# extract owner or org (first path element) from the repo url
-#   git@bitbucket.org:unicorn/rainbow.git             => unicorn
-#   git@github.com:unicorn/rainbow.git                => unicorn
-#   https://charlie@bitbucket.org/unicorn/rainbow.git => unicorn
-#   https://github.com/unicorn/rainbow.git        => unicorn
-owner_from_remote_url() {
-    echo "$@" | esed 's/^.*[:/]([^/]*)\/[^/]*$/\1/'
-}
-
-# extract host from the repo url
-#   git@bitbucket.org:unicorn/rainbow.git             => bitbucket.org
-#   git@github.com:unicorn/rainbow.git                => github.com
-#   https://charlie@bitbucket.org/unicorn/rainbow.git => bitbucket.org
-#   https://github.com/unicorn.git/rainbow.git        => github.com
-host_from_remote_url() {
-    echo "$@" | esed 's/^.*(@|:\/\/)([^:/]{1,})[:/].*$/\2/'
-}
+if [ "$1" = "-h" ]; then
+    fatal "usage: hig pr [<base-branch>]"
+fi
 
 fmt=`hig format`
-
-if [ "${fmt}" != git ]
-then
+if [ "${fmt}" != git ]; then
     fatal "pr: only supports git repos"
 fi
 
 base="$1"
-shift
-if [ -z "${base}" ]
-then
+shift || :
+if [ -z "${base}" ]; then
     base=master
 fi
 debug base=$base
 
-if [ "${base}" = "-h" ]
-then
-    fatal "usage: hig pr [<base-branch>]"
+remote_name="$(git config branch.${base}.remote)"
+if [ -z "${remote_name}" ]; then
+    remote_name=origin
 fi
-
-remote_name="$(git config --get branch.${base}.remote)"
 debug remote_name=$remote_name
-if [ -z "${remote_name}" ]
-then
-    fatal "pr: could not determine remote for branch: ${base}"
-fi
 
-remote_url="$(git config --get remote.${remote_name}.url)"
+remote_url="$(git config remote.${remote_name}.url)"
 debug remote_url=$remote_url
-if [ -z "${remote_url}" ]
-then
+if [ -z "${remote_url}" ]; then
     fatal "pr: could not determine url for remote: ${remote_name}"
 fi
 
 # $head is the branch we want to apply to $base
-head="$(git status -b --porcelain | head -n 1 | awk '{print $2}')"
+head="$(git_head)"
 debug head=$head
-remote_owner="$(owner_from_remote_url ${remote_url})"
+remote_owner="$(git_owner_from_repo_url ${remote_url})"
 debug remote_owner=$remote_owner
-remote_host="$(host_from_remote_url ${remote_url})"
+remote_host="$(git_host_from_repo_url ${remote_url})"
 debug remote_host=$remote_host
 
 title="${base}: $(git show  -s --format=%s)"
 
 case "${remote_host}" in
     github.com )
-        debug "github.com repo"
         if ! command -v hub >/dev/null; then
             fatal "pr: could not find hub(1); Check https://hub.github.com/ for how to install"
         fi
@@ -92,7 +50,6 @@ case "${remote_host}" in
         exec hub pull-request -m "${title}" -b "${remote_owner}:${base}" -h "${head}"
         ;;
     bitbucket.org )
-        debug "bitbucket.org repo"
         if ! command -v bitbucket >/dev/null; then
             fatal "pr: could not find bitbucket(1); Check https://bitbucket.org/zhemao/bitbucket-cli for how to install"
         fi

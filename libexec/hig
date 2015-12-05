@@ -12,7 +12,13 @@ log() {
 }
 
 debug() {
-  if [ -n "$DEBUG" ]; then
+  if [ -n "$DEBUG" ] || [ -n "$TRACE" ]; then
+    log "$@"
+  fi
+}
+
+trace() {
+  if [ -n "$TRACE" ]; then
     log "$@"
   fi
 }
@@ -23,27 +29,30 @@ fatal() {
 }
 
 
+# return the target of a symbolic link
 resolve_link() {
-  $(type -p greadlink readlink | head -1) "$1"
+  READLINK=$(type -p greadlink readlink | head -n 1)
+  $READLINK "$1"
 }
 
+# return the cannonical directory containing a file
 abs_dirname() {
   local cwd="$(pwd)"
-  debug cwd=$cwd
+  trace cwd=$cwd
   local path="$1"
-  debug path=$path
+  trace path=$path
 
   while [ -n "$path" ]; do
-		local nextdir="$(dirname "$path")"
-		debug nextdir=$nextdir
+    local nextdir="$(dirname "$path")"
+    trace nextdir=$nextdir
     cd "$nextdir"
     local name="$(basename "$path")"
-    debug name=$name
+    trace name=$name
     path="$(resolve_link "$name" || true)"
-    debug path=$path
+    trace path=$path
   done
 
-  debug pwd=$(pwd)
+  trace pwd=$(pwd)
   pwd
   cd "$cwd"
 }
@@ -61,7 +70,7 @@ debug _HIG_ROOT=$_HIG_ROOT
 # allow being called as `hig foo` or just `foo`
 base=$(basename $0)
 debug base=$base
-if [ x"hig" = x"$base" ]; then
+if [ "$base" = "hig" ]; then
   command="$1"
   shift || :  # allow shifting to nothing
 else

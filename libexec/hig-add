@@ -8,11 +8,11 @@ case $fmt in
 git )
   CMD="git add"
   ;;
-svn )
-  CMD="svn add"
-  ;;
 hg )
   CMD="hg add"
+  ;;
+svn )
+  CMD="svn add"
   ;;
 * )
   fatal "add: unknown command for repo type: $fmt"

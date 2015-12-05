@@ -7,14 +7,14 @@ BRANCH=`shift`
 
 fmt=`hig format`
 case $fmt in
+bzr )
+  CMD="bzr branch --switch ${BRANCH}"
+  ;;
 git )
   CMD="git checkout -b ${BRANCH}"
   ;;
 hg )
   CMD="hg branch ${BRANCH}"
-  ;;
-bzr )
-  CMD="bzr branch --switch ${BRANCH}"
   ;;
 * )
   fatal "mkbr: unknown command for repo type: $fmt"

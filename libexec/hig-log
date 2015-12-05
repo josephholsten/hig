@@ -8,11 +8,11 @@ case $fmt in
 git )
   CMD="git log"
   ;;
-svn )
-  CMD="svn log"
-  ;;
 hg )
   CMD="hg log"
+  ;;
+svn )
+  CMD="svn log"
   ;;
 * )
   fatal "log: unknown command for repo type: $fmt"

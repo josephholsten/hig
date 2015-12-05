@@ -8,11 +8,11 @@ case $fmt in
 git )
   CMD="git diff"
   ;;
-svn )
-  CMD="svn diff --git"
-  ;;
 hg )
   CMD="hg diff --git"
+  ;;
+svn )
+  CMD="svn diff --git"
   ;;
 * )
   fatal "diff: unknown command for repo type: $fmt"

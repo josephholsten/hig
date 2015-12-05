@@ -8,11 +8,11 @@ case $fmt in
 git )
   CMD="git pull"
   ;;
-svn )
-  CMD="svn update"
-  ;;
 hg )
   CMD="hg pull -u"
+  ;;
+svn )
+  CMD="svn update"
   ;;
 * )
   fatal "pull: unknown command for repo type: $fmt"

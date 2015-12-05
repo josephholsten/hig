@@ -1,24 +1,47 @@
 #!/bin/sh
-# open repo in github
-# TODO: support launchpad, bitbucket, more?
-base='http://github.com'
+# hig-view: open file or repo website
+
+. $_HIG_ROOT/lib/common.sh
 
 if [ $1 ]; then
   file=`git ls-files --full-name $1`;
 fi
 
-current=`git status -s -b | head -1 | cut -d' ' -f2`
-remote=`git config branch.$current.remote`
-if [ "$remote" = "" ] ; then
-  remote='origin'
+head="$(git_head)"
+log head=$head
+remote_name="$(git config branch.${head}.remote)"
+if [ -z "$remote_name" ] ; then
+  remote_name='origin'
 fi
-branch=`git config branch.$current.merge | sed 's/.*\/\([^\/]*\)/\1/'`
+log remote_name=$remote_name
 
-repo=`git remote -v |
-awk "\\$1 ~ /$remote/ {print \\$0}" |
-awk '$2 ~ /github/ {print $2}' |
-head -n 1 |
-sed 's/.*[:/]\([^/]*\)\/\([^\.]*\)\.git/\1\/\2\/blob/'`
+branch_path="$(git config branch.${head}.merge)"
+debug branch_path=$branch_path
+branch=$(echo "${branch_path}" | esed 's/.*\/([^/]*)/\1/')
+debug branch=$branch
 
-url=$base/$repo/$branch/$file
+remote_url="$(git config remote.${remote_name}.url)"
+debug remote_url=$remote_url
+
+host="$(git_host_from_repo_url ${remote_url})"
+debug host=$host
+path=$(git_path_from_repo_url ${remote_url})
+debug path=$path
+
+case ${host} in
+    bitbucket.org )
+        url="https://${host}/${path}/src/${branch}/${file}"
+        ;;
+    github.com )
+        url="https://${host}/${path}/blob/${branch}/${file}"
+        ;;
+    gitlab.com )
+        url="https://${host}/${path}/blob/${branch}/${file}"
+        ;;
+    * )
+        log "Unknown host: ${host}, guessing at a URI"
+        url="http://${host}/${path}/${branch}/${file}"
+        ;;
+esac
+debug url=$url
 open $url
