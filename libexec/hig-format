@@ -1,23 +1,23 @@
 #!/bin/sh
 # supported formats: git, hg, bzr, svn, darcs
 
-if which git >/dev/null &&
+if command -v git >/dev/null &&
     git status >/dev/null 2>&1; then
   echo git
   exit
-elif which svn >/dev/null &&
+elif command -v svn >/dev/null &&
     svn info >/dev/null 2>&1; then
   echo svn
   exit
-elif which hg >/dev/null &&
+elif command -v hg >/dev/null &&
     hg status >/dev/null 2>&1; then
   echo hg
   exit
-elif which bzr >/dev/null &&
+elif command -v bzr >/dev/null &&
     bzr info >/dev/null 2>&1; then
   echo bzr
   exit
-elif which cvs >/dev/null &&
+elif command -v cvs >/dev/null &&
     test -x CVS &&
     cvs st  >/dev/null 2>&1; then
   echo bzr

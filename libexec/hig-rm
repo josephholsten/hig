@@ -9,11 +9,11 @@ case $fmt in
 git )
   CMD="git rm"
   ;;
-svn )
-  CMD="svn delete --keep-local"
-  ;;
 hg )
   CMD="hg remove --after --force"
+  ;;
+svn )
+  CMD="svn delete --keep-local"
   ;;
 * )
   fatal "rm: unknown command for repo type: $fmt"

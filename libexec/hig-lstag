@@ -5,14 +5,14 @@
 
 fmt=`hig format`
 case $fmt in
+bzr )
+  CMD="bzr tags"
+  ;;
 git )
   CMD="git tag"
   ;;
 hg )
   CMD="hg tags"
-  ;;
-bzr )
-  CMD="bzr tags"
   ;;
 * )
   fatal "lstag: unknown command for repo type: $fmt"
