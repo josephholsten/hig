@@ -28,6 +28,7 @@ I work on many open source projects, which often means I must deal with their ve
 * `pull`
 * `push`
 * `st`
+* `pr`: open a pull request on bitbucket or github
 
 ## Supports
 
