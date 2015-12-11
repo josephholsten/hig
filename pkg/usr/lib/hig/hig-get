@@ -1,0 +1,22 @@
+#!/bin/sh
+# hig-get: get remote repo
+# usage: hig get <repo>
+
+. "$_HIG_LIB_PATH/common.sh"
+
+REPO=`shift`
+
+if   debug " hg identify  ${REPO}" &&  hg identify  "${REPO}" >/dev/null; then
+    CMD="hg clone"
+elif debug "git ls-remote ${REPO}" && git ls-remote "${REPO}" >/dev/null; then
+    CMD="git clone"
+elif debug "attempting darcs" && curl -sf "${REPO}/_darcs/format" >/dev/null; then
+    CMD="darcs get"
+elif debug "svn info      ${REPO}" && svn info --non-interactive --trust-server-cert "${REPO}" >/dev/null; then
+    CMD="svn checkout"
+else
+    echo "Unknown repo format: $REPO" >&2
+    exit 1
+fi
+
+exec $CMD "$REPO" "$@"

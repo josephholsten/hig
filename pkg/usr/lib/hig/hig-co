@@ -1,0 +1,23 @@
+#!/bin/sh
+# hig-co: checkout files from a seperate branch
+# usage: hig co [<ref> [<file>...]]
+
+. "$_HIG_LIB_PATH/common.sh"
+
+fmt=`hig format`
+case $fmt in
+git )
+  CMD="git checkout"
+  ;;
+hg )
+  CMD="hg checkout"
+  ;;
+svn )
+  fatal "co: Subversion checkout is probably not what you want"
+  ;;
+* )
+  fatal "co: unknown command for repo type: $fmt"
+  ;;
+esac
+
+exec $CMD "$@"

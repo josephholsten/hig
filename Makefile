@@ -16,7 +16,7 @@ all: man
 
 man: ${MAN_FILES}
 
-check:
+test:
 	bats ${TESTS}
 
 clean:

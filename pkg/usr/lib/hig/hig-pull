@@ -1,0 +1,23 @@
+#!/bin/sh
+# hig-pull: pull changes from remote repository
+# usage: hig pull [<repo>]
+
+. "$_HIG_LIB_PATH/common.sh"
+
+fmt=`hig format`
+case $fmt in
+git )
+  CMD="git pull"
+  ;;
+hg )
+  CMD="hg pull -u"
+  ;;
+svn )
+  CMD="svn update"
+  ;;
+* )
+  fatal "pull: unknown command for repo type: $fmt"
+  ;;
+esac
+
+exec $CMD "$@"

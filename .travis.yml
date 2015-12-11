@@ -2,4 +2,4 @@
 sudo: false 
 dist: trusty
 language: c
-script: make check
+script: make test

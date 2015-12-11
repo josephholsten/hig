@@ -1,0 +1,67 @@
+#!/bin/sh
+# hig-view: open file or repo website
+# usage: hig view [<file>]
+
+. "$_HIG_LIB_PATH/common.sh"
+
+if [ $1 ]; then
+  file=`git ls-files --full-name $1`;
+fi
+
+head="$(git_head)"
+debug head=$head
+remote_name="$(git config branch.${head}.remote)"
+if [ -z "$remote_name" ] ; then
+  remote_name='origin'
+fi
+debug remote_name=$remote_name
+
+branch_path="$(git config branch.${head}.merge)"
+debug branch_path=$branch_path
+branch=$(echo "${branch_path}" | esed 's/.*\/([^/]*)/\1/')
+debug branch=$branch
+
+remote_url="$(git config remote.${remote_name}.url)"
+debug remote_url=$remote_url
+
+host="$(git_host_from_repo_url ${remote_url})"
+debug host=$host
+path=$(git_path_from_repo_url ${remote_url})
+debug path=$path
+
+case ${host} in
+    bitbucket.org )
+        if [ -z "$branch" ]; then
+            url="https://${host}/${path}/src"
+        elif [ -z "$file" ]; then
+            url="https://${host}/${path}/src/${branch}"
+        else
+            url="https://${host}/${path}/blob/${branch}/${file}"
+        fi
+        ;;
+    github.com )
+        if [ -z "$branch" ]; then
+            url="https://${host}/${path}"
+        elif [ -z "$file" ]; then
+            url="https://${host}/${path}/tree/${branch}"
+        else
+            url="https://${host}/${path}/blob/${branch}/${file}"
+        fi
+        ;;
+    gitlab.com )
+        if [ -z "$branch" ]; then
+            url="https://${host}/${path}"
+        elif [ -z "$file" ]; then
+            url="https://${host}/${path}/tree/${branch}"
+        else
+            url="https://${host}/${path}/blob/${branch}/${file}"
+        fi
+        ;;
+    * )
+        log "Unknown host: ${host}, guessing at a URI"
+        url="http://${host}/${path}/${branch}/${file}"
+        ;;
+esac
+
+debug url=$url
+open $url

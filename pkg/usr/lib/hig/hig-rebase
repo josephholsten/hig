@@ -1,0 +1,17 @@
+#!/bin/sh
+# hig-rebase: apply local commits onto upstream ref
+# usage: hig rebase [<ref>]
+
+. "$_HIG_LIB_PATH/common.sh"
+
+fmt=`hig format`
+case $fmt in
+git )
+  CMD="git rebase"
+  ;;
+* )
+  fatal "rebase: unknown command for repo type: $fmt"
+  ;;
+esac
+
+exec $CMD "$@"

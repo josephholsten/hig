@@ -1,0 +1,182 @@
+.TH "" "" "" "" ""
+.SH NAME
+.PP
+hig \-\- common access to revision control
+.SH DESCRIPTION
+.PP
+Unified access for version control systems including bzr(1), cvs(1),
+darcs(1), git(1), hg(1), svn(1).
+.SH SYNOPSIS
+.PP
+\f[C]hg\ <command>\ [option...]\ [argument...]\f[]
+.PP
+Wraps the most common commands you will use in multiple systems.
+Supported commands are:
+.TP
+.B \f[C]hig\ get\ <repo>\ [<directory>]\f[]
+get remote repo
+.RS
+.RE
+.TP
+.B \f[C]hig\ add\ <file>...\f[]
+add file to versioned files
+.RS
+.RE
+.TP
+.B \f[C]hig\ rm\ \ <file>...\f[]
+remove file from version control, leaving the existing contents on disk
+.RS
+.RE
+.TP
+.B \f[C]hig\ ci\ [\-m\ <msg>]\ [<file>...]\f[]
+commit changes to version history
+.RS
+.RE
+.TP
+.B \f[C]hig\ co\ [<ref>\ [<file>...]]\f[]
+checkout files from a seperate branch
+.RS
+.RE
+.TP
+.B \f[C]hig\ pull\ [<repo>]\f[]
+pull changes from remote repository
+.RS
+.RE
+.TP
+.B \f[C]hig\ push\ [<repo>]\f[]
+push changes to remote repo
+.RS
+.RE
+.TP
+.B \f[C]hig\ st\f[]
+show repo status
+.RS
+.RE
+.TP
+.B \f[C]hig\ diff\ [<ref>\ [<file>...]]\f[]
+show diff between current files and specified ref
+.RS
+.RE
+.TP
+.B \f[C]hig\ log\ \ [<ref>\ [<file>...]]\f[]
+list revision history
+.RS
+.RE
+.TP
+.B \f[C]hig\ lsbr\f[]
+list branches
+.RS
+.RE
+.TP
+.B \f[C]hig\ mkbr\ <branch>\f[]
+make new branch
+.RS
+.RE
+.TP
+.B \f[C]hig\ chbr\ <branch>\f[]
+change active branch
+.RS
+.RE
+.TP
+.B \f[C]hig\ rmbr\ <branch>\f[]
+remove branch
+.RS
+.RE
+.TP
+.B \f[C]hig\ lstag\f[]
+list tags
+.RS
+.RE
+.TP
+.B \f[C]hig\ mktag\ <tag>\ [<ref>]\f[]
+make new tag
+.RS
+.RE
+.TP
+.B \f[C]hig\ format\f[]
+display local repo format
+.RS
+.RE
+.TP
+.B \f[C]hig\ help\f[]
+display help
+.RS
+.RE
+.TP
+.B \f[C]hig\ pick\ <ref>\f[]
+cherry pick a single patch
+.RS
+.RE
+.TP
+.B \f[C]hig\ rebase\ [<ref>]\f[]
+apply local commits onto upstream ref
+.RS
+.RE
+.TP
+.B \f[C]hig\ pr\ [<branch>]\f[]
+open a pull request on bitbucket or github
+.RS
+.RE
+.TP
+.B \f[C]hig\ view\ [<file>]\f[]
+open file or repo website
+.RS
+.RE
+.SH OPTIONS
+.SH EXAMPLES
+.PP
+Get a remote repo
+.IP
+.nf
+\f[C]
+hig\ get\ git://git.kernel.org/pub/scm/git/git.git
+
+echo\ foo\ >\ foo
+hig\ add\ foo
+hig\ ci\ \-m\ \[aq]initial\[aq]
+echo\ bar\ >\ foo
+hig\ ci\ \-m\ \[aq]foo:\ bar\[aq]\ >\ /dev/null
+hig\ co\ master\ foo
+hig\ diff
+hig\ diff\ head
+hig\ log
+hig\ mkbr\ bar
+hig\ rm\ foo
+hig\ st
+\f[]
+.fi
+.PP
+Make a new branch \f[C]feature\-unicorn\f[], switching to it
+.IP
+.nf
+\f[C]
+hig\ mkbr\ feature\-unicorn
+\f[]
+.fi
+.PP
+Change branch to \f[C]master\f[]
+.IP
+.nf
+\f[C]
+hig\ chbr\ master
+\f[]
+.fi
+.PP
+Remove branch \f[C]feature\-unicorn\f[]
+.IP
+.nf
+\f[C]
+hig\ rmbr\ feature\-unicorn
+\f[]
+.fi
+.PP
+Make a new tag \f[C]0.1.0\f[]
+.IP
+.nf
+\f[C]
+hig\ mktag\ 0.1.0
+\f[]
+.fi
+.SH SEE ALSO
+.PP
+bzr(1), cvs(1), darcs(1), git(1), hg(1), svn(1)

@@ -1,0 +1,23 @@
+#!/bin/sh
+# hig-help: display help
+
+echo "usage: hig <cmd> [<args>]"
+echo "  commands:"
+echo "  get    retrieve a repository into a new directory"
+echo "  add    add the specified files on the next commit"
+echo "  rm     remove the specified files on the next commit"
+echo "  mv     rename files"
+echo "  ci     commit the specified files or all outstanding changes"
+echo "  st     show changed files in the working directory"
+echo "  co     checkout working directory (or switch revisions)"
+echo "  diff   show file differences"
+echo "  log    show revision history"
+echo "  pull   pull changes from the specified source"
+echo "  push   push changes to the specified destination"
+echo "  lstag  list tags"
+echo "  mktag  create new tag"
+echo "  lsbr   list branches"
+echo "  mkbr   create new branch"
+echo "  rmbr   remove existing branch"
+echo "  pr     submit pull request"
+exit 1

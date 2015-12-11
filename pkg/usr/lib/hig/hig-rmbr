@@ -1,0 +1,19 @@
+#!/bin/sh
+# hig-rmbr: remove branch
+# usage: hig rmbr <branch>
+
+. "$_HIG_LIB_PATH/common.sh"
+
+BRANCH=`shift`
+
+fmt=`hig format`
+case $fmt in
+git )
+  CMD="git branch -d ${BRANCH}"
+  ;;
+* )
+  fatal "rmbr: unknown command for repo type: $fmt"
+  ;;
+esac
+
+exec $CMD "$@"

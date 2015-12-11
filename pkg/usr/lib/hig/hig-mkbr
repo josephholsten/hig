@@ -1,0 +1,25 @@
+#!/bin/sh
+# hig-mkbr: make new branch
+# usage: hig mkbr <branch>
+
+. "$_HIG_LIB_PATH/common.sh"
+
+BRANCH=`shift`
+
+fmt=`hig format`
+case $fmt in
+bzr )
+  CMD="bzr branch --switch ${BRANCH}"
+  ;;
+git )
+  CMD="git checkout -b ${BRANCH}"
+  ;;
+hg )
+  CMD="hg branch ${BRANCH}"
+  ;;
+* )
+  fatal "mkbr: unknown command for repo type: $fmt"
+  ;;
+esac
+
+exec $CMD "$@"

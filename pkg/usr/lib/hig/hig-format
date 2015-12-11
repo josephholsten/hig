@@ -1,0 +1,28 @@
+#!/bin/sh
+# hig-format: display local repo format
+# supported formats: git, hg, bzr, svn, darcs
+
+if command -v git >/dev/null &&
+    git status >/dev/null 2>&1; then
+  echo git
+  exit
+elif command -v svn >/dev/null &&
+    svn info >/dev/null 2>&1; then
+  echo svn
+  exit
+elif command -v hg >/dev/null &&
+    hg status >/dev/null 2>&1; then
+  echo hg
+  exit
+elif command -v bzr >/dev/null &&
+    bzr info >/dev/null 2>&1; then
+  echo bzr
+  exit
+elif command -v cvs >/dev/null &&
+    test -x CVS &&
+    cvs st  >/dev/null 2>&1; then
+  echo bzr
+else
+  echo Unknown repo format >&2
+  exit 1
+fi

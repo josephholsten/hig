@@ -1,0 +1,54 @@
+#!/bin/bash
+
+_hig_common()
+{
+  local cur cmd offset
+  offset="${1}"
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  cmd="${COMP_WORDS[offset]}"
+  COMPREPLY=()
+  if [ "$COMP_CWORD" -eq ${offset} ]; then
+    COMPREPLY=( $(compgen -W "get add rm ci co pull push st diff log lsbr mkbr chbr rmbr lstag mktag format help pick rebase pr view" -- ${cur}) )
+  elif [ "$COMP_CWORD" -eq $(expr ${offset} + 1) ]; then
+    case $cmd in
+      add|rm|view)
+        compopt -o filenames 2>/dev/null
+        COMPREPLY=( $(compgen -f -- ${cur}) )
+        return
+        ;;
+      chbr|pr|rmbr)
+        local branches=$(lsbr | awk '/^[^*]/ {print $1}; /^\*/ {print $2}')
+        COMPREPLY=( $(compgen -W "${branches}" -- ${cur}) )
+        return
+        ;;
+      co|diff|log|pick|rebase)
+        local refs=$(lsbr | awk '/^[^*]/ {print $1}; /^\*/ {print $2}'; lstag; echo head)
+        COMPREPLY=( $(compgen -W "${refs}" -- ${cur}) )
+        return
+        ;;
+    esac
+  else
+    case $cmd in
+      add|rm|co|diff|log)
+        compopt -o filenames 2>/dev/null
+        COMPREPLY=( $(compgen -f -- ${cur}) )
+        return
+        ;;
+    esac
+  fi
+
+  return 0
+}
+
+_hig()
+{
+  _hig_common 1
+}
+
+_hig_prefixless()
+{
+  _hig_common 0
+}
+
+complete -F _hig hig
+complete -F _hig_prefixless chbr ci co get lsbr lstag mkbr mktag pick pull push rmbr st
