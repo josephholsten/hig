@@ -4,3 +4,7 @@ dist: trusty
 language: c
 script: make test
 sudo: false
+addons:
+  apt:
+    packages:
+    - bats
