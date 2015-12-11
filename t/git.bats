@@ -9,6 +9,8 @@ setup() {
   WORKING="$(mktmpdir)"
   cd "$WORKING"
   git init > /dev/null
+  git config user.email "you@example.com"
+  git config user.name "Your Name"
 }
 
 teardown() {
@@ -69,8 +71,10 @@ teardown() {
   run hig ci -m 'initial'
 
   assert_match "${lines[0]}" "\[master (root-commit) .......\] initial"
-  assert_equal "${lines[1]}" " 1 file changed, 1 insertion(+)"
-  assert_equal "${lines[2]}" " create mode 100644 foo"
+  assert_match "${lines[1]}" " Author: "
+  # assert_equal "${lines[1]}" " 1 file changed, 1 insertion(+)"
+  assert_equal "${lines[2]}" " 1 file changed, 1 insertion(+)"
+  # assert_equal "${lines[2]}" " create mode 100644 foo"
 }
 
 @test "co" {
