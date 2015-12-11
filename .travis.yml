@@ -3,3 +3,4 @@ sudo: false
 dist: trusty
 language: c
 script: make test
+sudo: false
