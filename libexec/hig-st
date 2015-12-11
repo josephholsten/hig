@@ -1,5 +1,6 @@
 #!/bin/sh
 # hig-st: show repo status
+# usage: hig st
 
 . $_HIG_ROOT/lib/common.sh
 

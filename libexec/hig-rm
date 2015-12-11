@@ -1,6 +1,7 @@
 #!/bin/sh
-# hig-rm - remove file from version control, leaving the
+# hig-rm: remove file from version control, leaving the
 # existing contents on disk
+# usage: hig rm <file>...
 
 . $_HIG_ROOT/lib/common.sh
 

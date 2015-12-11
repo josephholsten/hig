@@ -18,17 +18,44 @@ I work on many open source projects, which often means I must deal with their ve
 
 ## Commands
 
-* `ci`
-* `co`
-* `get`
-* `hig add`
-* `hig diff`
-* `hig log`
-* `hig rm`
-* `pull`
-* `push`
-* `st`
-* `pr`: open a pull request on bitbucket or github
+* `hig get <repo> [<directory>]`: get remote repo
+
+* `hig add <file>...`: add file to versioned files
+* `hig rm  <file>...`: remove file from version control, leaving the existing contents on disk
+
+* `hig ci [-m <msg>] [<file>...]`: commit changes to version history
+* `hig co [<ref> [<file>...]]`: checkout files from a seperate branch
+
+* `hig pull [<repo>]`: pull changes from remote repository
+* `hig push [<repo>]`: push changes to remote repo
+
+* `hig st`: show repo status
+* `hig diff [<ref> [<file>...]]`: show diff between current files and specified ref
+* `hig log [<ref> [<file>...]]`: list revision history
+
+* `hig lsbr`: list branches
+* `hig mkbr <branch>`: make new branch
+* `hig chbr <branch>`: change active branch
+* `hig rmbr <branch>`: remove branch
+
+* `hig lstag`: list tags
+* `hig mktag <tag> [<ref>]`: make new tag
+
+* `hig format`: display local repo format
+* `hig help`: display help
+
+* `hig pick <ref>`: cherry pick a single patch
+* `hig rebase [<ref>]`: apply local commits onto upstream ref
+
+* `hig pr [<branch>]`: open a pull request on bitbucket or github
+* `hig view [<file>]`: open file or repo website
+
+## Completion
+
+Best of all, we have bash tab completion for services. Place the
+`completion/hig` script in `/etc/bash_completion.d` and you
+should have completion the next time you log in. Or just `source` the
+file to get it right now!
 
 ## Supports
 

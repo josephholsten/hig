@@ -1,5 +1,6 @@
 #!/bin/sh
 # hig-diff: show diff between current files and last version
+# usage: hig diff [<ref> [<file>...]]
 
 . $_HIG_ROOT/lib/common.sh
 

@@ -1,5 +1,6 @@
 #!/bin/sh
 # hig-mktag: make new tag
+# usage: hig mktag <tag> [<ref>]
 
 . $_HIG_ROOT/lib/common.sh
 

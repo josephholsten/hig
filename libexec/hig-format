@@ -1,4 +1,5 @@
 #!/bin/sh
+# hig-format: display local repo format
 # supported formats: git, hg, bzr, svn, darcs
 
 if command -v git >/dev/null &&

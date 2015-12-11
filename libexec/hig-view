@@ -1,5 +1,6 @@
 #!/bin/sh
 # hig-view: open file or repo website
+# usage: hig view [<file>]
 
 . $_HIG_ROOT/lib/common.sh
 

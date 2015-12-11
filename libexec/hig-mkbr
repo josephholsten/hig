@@ -1,5 +1,6 @@
 #!/bin/sh
 # hig-mkbr: make new branch
+# usage: hig mkbr <branch>
 
 . $_HIG_ROOT/lib/common.sh
 

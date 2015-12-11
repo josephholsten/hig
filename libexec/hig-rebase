@@ -1,5 +1,6 @@
 #!/bin/sh
-# hig-rebase: ...
+# hig-rebase: apply local commits onto upstream ref
+# usage: hig rebase [<ref>]
 
 . $_HIG_ROOT/lib/common.sh
 

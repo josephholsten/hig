@@ -1,5 +1,6 @@
 #!/bin/sh
 # hig-rmbr: remove branch
+# usage: hig rmbr <branch>
 
 . $_HIG_ROOT/lib/common.sh
 

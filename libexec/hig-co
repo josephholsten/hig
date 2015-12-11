@@ -1,5 +1,6 @@
 #!/bin/sh
 # hig-co: checkout files from a seperate branch
+# usage: hig co [<ref> [<file>...]]
 
 . $_HIG_ROOT/lib/common.sh
 

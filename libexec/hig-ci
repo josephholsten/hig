@@ -1,5 +1,6 @@
 #!/bin/sh
 # hig-ci: commit changes to version history
+# usage: hig ci [-m <msg>] [<file>...]
 
 . $_HIG_ROOT/lib/common.sh
 

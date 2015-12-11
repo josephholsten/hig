@@ -10,42 +10,39 @@ Unified access for version control systems including bzr(1), cvs(1), darcs(1), g
 
 `hg command [option...] [argument...]`
 
-Wraps the most common commands you will use in multiple systems. Supported commands are
+Wraps the most common commands you will use in multiple systems. Supported commands are:
 
+* `hig get <repo> [<directory>]`: get remote repo
 
-`hig get <repository> [<directory>]`
+* `hig add <file>...`: add file to versioned files
+* `hig rm  <file>...`: remove file from version control, leaving the existing contents on disk
 
-`hig add <file|directory> ...`
-`hig rm <file|directory> ...`
+* `hig ci [-m <msg>] [<file>...]`: commit changes to version history
+* `hig co [<ref> [<file>...]]`: checkout files from a seperate branch
 
-`hig ci [file|directory]...`
-`hig co [file|directory]...`
-`hig pull [repository]...`
-`hig push [repository]`
+* `hig pull [<repo>]`: pull changes from remote repository
+* `hig push [<repo>]`: push changes to remote repo
 
-`hig st [file|directory]...`
-`hig diff [file|directory]...`
-`hig log [file|directory]...`
+* `hig st`: show repo status
+* `hig diff [<ref> [<file>...]]`: show diff between current files and specified ref
+* `hig log  [<ref> [<file>...]]`: list revision history
 
-`hig chbr <branch>`
-`hig mkbr <branch>`
-`hig lsbr`
-`hig rmbr <branch>`
+* `hig lsbr`: list branches
+* `hig mkbr <branch>`: make new branch
+* `hig chbr <branch>`: change active branch
+* `hig rmbr <branch>`: remove branch
 
-`hig lstag`
-`hig mktag <tag>`
+* `hig lstag`: list tags
+* `hig mktag <tag> [<ref>]`: make new tag
 
-`hig format`
-`hig help`
+* `hig format`: display local repo format
+* `hig help`: display help
 
-`hig pick <ref>`
+* `hig pick <ref>`: cherry pick a single patch
+* `hig rebase [<ref>]`: apply local commits onto upstream ref
 
-# other stuff
-
-`hig mv <source> ... <destination>`
-`hig amend [file|directory]...`
-`hig rebase <ref>`
-`hig test [[initialization] command]`
+* `hig pr [<branch>]`: open a pull request on bitbucket or github
+* `hig view [<file>]`: open file or repo website
 
 ## OPTIONS
 

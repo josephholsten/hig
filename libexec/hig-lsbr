@@ -1,12 +1,13 @@
 #!/bin/sh
 # hig-lsbr: list branches
+# usage: hig lsbr
 
 . $_HIG_ROOT/lib/common.sh
 
 fmt=`hig format`
 case $fmt in
 git )
-  CMD="git branch"
+  CMD="git branch --list"
   ;;
 hg )
   CMD="hg branches"

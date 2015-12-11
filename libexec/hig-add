@@ -1,5 +1,6 @@
 #!/bin/sh
 # hig-add: add file to versioned files
+# usage:  hig add <file>...
 
 . $_HIG_ROOT/lib/common.sh
 

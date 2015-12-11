@@ -1,4 +1,5 @@
 #!/bin/sh
+# hig-help: display help
 
 echo "usage: hig <cmd> [<args>]"
 echo "  commands:"

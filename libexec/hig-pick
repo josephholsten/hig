@@ -1,5 +1,6 @@
 #!/bin/sh
 # hig-pick: cherry pick a single patch
+# usage: hig pick <ref>
 
 . $_HIG_ROOT/lib/common.sh
 

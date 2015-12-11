@@ -1,5 +1,6 @@
 #!/bin/sh
 # hig-pr: open a pull request in github or bitbucket
+# usage: hig pr [<base-branch>]
 
 . $_HIG_ROOT/lib/common.sh
 

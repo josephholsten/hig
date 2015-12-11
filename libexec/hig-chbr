@@ -1,5 +1,6 @@
 #!/bin/sh
 # hig-chbr: change active branch
+# usage: hig chbr <branch>
 
 . $_HIG_ROOT/lib/common.sh
 

@@ -1,5 +1,6 @@
 #!/bin/sh
 # hig-lstag: list tags
+# usage: hig lstag
 
 . $_HIG_ROOT/lib/common.sh
 
@@ -9,7 +10,7 @@ bzr )
   CMD="bzr tags"
   ;;
 git )
-  CMD="git tag"
+  CMD="git tag --list"
   ;;
 hg )
   CMD="hg tags"
