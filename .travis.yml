@@ -1,10 +1,5 @@
 ---
 sudo: false 
 dist: trusty
-language: c
+language: bash
 script: make test
-sudo: false
-addons:
-  apt:
-    packages:
-    - bats
