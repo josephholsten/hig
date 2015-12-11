@@ -2,7 +2,7 @@
 # hig-push: push changes to remote repo
 # usage: hig push [<repo>]
 
-. $_HIG_ROOT/lib/common.sh
+. "$_HIG_ROOT/lib/common.sh"
 
 fmt=`hig format`
 case $fmt in

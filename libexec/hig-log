@@ -2,7 +2,7 @@
 # hig-log: list revision history
 # usage: hig log [<ref> [<file>...]]
 
-. $_HIG_ROOT/lib/common.sh
+. "$_HIG_ROOT/lib/common.sh"
 
 fmt=`hig format`
 case $fmt in

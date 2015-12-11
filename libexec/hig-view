@@ -2,7 +2,7 @@
 # hig-view: open file or repo website
 # usage: hig view [<file>]
 
-. $_HIG_ROOT/lib/common.sh
+. "$_HIG_ROOT/lib/common.sh"
 
 if [ $1 ]; then
   file=`git ls-files --full-name $1`;

@@ -2,7 +2,7 @@
 # hig-pick: cherry pick a single patch
 # usage: hig pick <ref>
 
-. $_HIG_ROOT/lib/common.sh
+. "$_HIG_ROOT/lib/common.sh"
 
 REF=`shift`
 

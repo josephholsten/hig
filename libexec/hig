@@ -68,7 +68,7 @@ export _HIG_ROOT="$(abs_dirname "$libexec_path")"
 debug _HIG_ROOT=$_HIG_ROOT
 
 # allow being called as `hig foo` or just `foo`
-base=$(basename $0)
+base=$(basename "$0")
 debug base=$base
 if [ "$base" = "hig" ]; then
   command="$1"
