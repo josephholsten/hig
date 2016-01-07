@@ -1,4 +1,0 @@
-git(1)    http://man.cx/git(1)
-hg(1)     http://man.cx/hg(1)
-darcs(1)  http://man.cx/darcs(1)
-svn(1)    http://man.cx/svn(1)
