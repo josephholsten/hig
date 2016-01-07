@@ -35,10 +35,12 @@ fi
 # $head is the branch we want to apply to $base
 head="$(git_head)"
 debug head=$head
-remote_owner="$(git_owner_from_repo_url ${remote_url})"
-debug remote_owner=$remote_owner
 remote_host="$(git_host_from_repo_url ${remote_url})"
 debug remote_host=$remote_host
+remote_owner="$(git_owner_from_repo_url ${remote_url})"
+debug remote_owner=$remote_owner
+remote_repo="$(git_repo_from_repo_url ${remote_url})"
+debug remote_repo=$remote_repo
 
 title="${base}: $(git show  -s --format=%s)"
 
@@ -48,6 +50,7 @@ case "${remote_host}" in
             fatal "pr: could not find hub(1); Check https://hub.github.com/ for how to install"
         fi
         hig push
+        debug exec hub pull-request -m \"${title}\" -b \"${remote_owner}/${remote_repo}:${base}\" -h \"${head}\"
         exec hub pull-request -m "${title}" -b "${remote_owner}:${base}" -h "${head}"
         ;;
     bitbucket.org )
@@ -55,8 +58,6 @@ case "${remote_host}" in
             fatal "pr: could not find bitbucket(1); Check https://bitbucket.org/zhemao/bitbucket-cli for how to install"
         fi
         hig push
-        remote_repo="$(git_repo_from_repo_url ${remote_url})"
-        debug remote_repo=$remote_repo
         debug exec bitbucket pull_request --owner \"${remote_owner}\" --reponame \"${remote_repo}\" --title \"${title}\" \"${head}\" \"${base}\"
         exec bitbucket pull_request --owner "${remote_owner}" --reponame "${remote_repo}" --title "${title}" "${head}" "${base}"
         ;;

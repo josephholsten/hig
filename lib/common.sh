@@ -49,8 +49,9 @@ git_head() {
 #   git@gitlab:unicorn/rainbow.git                    => unicorn/rainbow
 #   https://charlie@bitbucket.org/unicorn/rainbow.git => unicorn/rainbow
 #   https://github.com/unicorn/rainbow.git            => unicorn/rainbow
+#   https://github.com/unicorn/rainbow                => unicorn/rainbow
 git_path_from_repo_url() {
-    echo "$@" | esed 's/.*[:/]([^/]*\/[^\.]*)\.git/\1/'
+    echo "$@" | esed 's/.*[:/]([^/]*\/[^\.]*)(\.git)?/\1/'
 }
 
 # extract owner or org (first path element) from the repo url
