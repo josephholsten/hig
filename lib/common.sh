@@ -61,6 +61,14 @@ git_owner_from_repo_url() {
     git_path_from_repo_url "$@" | esed 's/^([^/]*)\/[^/]*$/\1/'
 }
 
+# extract repo (final path element) from the repo url
+#   git@gitlab:unicorn/rainbow.git                    => rainbow
+#   https://charlie@bitbucket.org/unicorn/rainbow.git => rainbow
+#   https://github.com/unicorn/rainbow.git            => rainbow
+git_repo_from_repo_url() {
+    git_path_from_repo_url "$@" | esed 's/^[^/]*\/([^/]*)$/\1/'
+}
+
 # extract host from the repo url
 #   git@gitlab:unicorn/rainbow.git                    => gitlab.com
 #   https://charlie@bitbucket.org/unicorn/rainbow.git => bitbucket.org

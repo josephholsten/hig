@@ -55,7 +55,10 @@ case "${remote_host}" in
             fatal "pr: could not find bitbucket(1); Check https://bitbucket.org/zhemao/bitbucket-cli for how to install"
         fi
         hig push
-        exec bitbucket pull_request --owner "${remote_owner}" --title "${title}" "${head}" "${base}"
+        remote_repo="$(git_repo_from_repo_url ${remote_url})"
+        debug remote_repo=$remote_repo
+        debug exec bitbucket pull_request --owner \"${remote_owner}\" --reponame \"${remote_repo}\" --title \"${title}\" \"${head}\" \"${base}\"
+        exec bitbucket pull_request --owner "${remote_owner}" --reponame "${remote_repo}" --title "${title}" "${head}" "${base}"
         ;;
     * )
         fatal "pr: couldn't recognize remote url: ${remote_url}"
