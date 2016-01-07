@@ -49,8 +49,9 @@ git_head() {
 #   git@gitlab:unicorn/rainbow.git                    => unicorn/rainbow
 #   https://charlie@bitbucket.org/unicorn/rainbow.git => unicorn/rainbow
 #   https://github.com/unicorn/rainbow.git            => unicorn/rainbow
+#   https://github.com/unicorn/rainbow                => unicorn/rainbow
 git_path_from_repo_url() {
-    echo "$@" | esed 's/.*[:/]([^/]*\/[^\.]*)\.git/\1/'
+    echo "$@" | esed 's/.*[:/]([^/]*\/[^\.]*)(\.git)?/\1/'
 }
 
 # extract owner or org (first path element) from the repo url
@@ -59,6 +60,14 @@ git_path_from_repo_url() {
 #   https://github.com/unicorn/rainbow.git            => unicorn
 git_owner_from_repo_url() {
     git_path_from_repo_url "$@" | esed 's/^([^/]*)\/[^/]*$/\1/'
+}
+
+# extract repo (final path element) from the repo url
+#   git@gitlab:unicorn/rainbow.git                    => rainbow
+#   https://charlie@bitbucket.org/unicorn/rainbow.git => rainbow
+#   https://github.com/unicorn/rainbow.git            => rainbow
+git_repo_from_repo_url() {
+    git_path_from_repo_url "$@" | esed 's/^[^/]*\/([^/]*)$/\1/'
 }
 
 # extract host from the repo url
