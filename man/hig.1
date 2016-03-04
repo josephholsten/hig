@@ -2,67 +2,129 @@
 .\"
 .TH "" "" "" "" ""
 .hy
-.SH hig(1) \-\- common access to revision control
-.SS DESCRIPTION
+.SH NAME
+.PP
+hig \-\- common access to revision control
+.SH DESCRIPTION
 .PP
 Unified access for version control systems including bzr(1), cvs(1),
 darcs(1), git(1), hg(1), svn(1).
-.SS SYNOPSIS
+.SH SYNOPSIS
 .PP
 \f[C]hg\ command\ [option...]\ [argument...]\f[]
 .PP
 Wraps the most common commands you will use in multiple systems.
 Supported commands are:
-.IP \[bu] 2
-\f[C]hig\ get\ <repo>\ [<directory>]\f[]: get remote repo
-.IP \[bu] 2
-\f[C]hig\ add\ <file>...\f[]: add file to versioned files
-.IP \[bu] 2
-\f[C]hig\ rm\ \ <file>...\f[]: remove file from version control, leaving
-the existing contents on disk
-.IP \[bu] 2
-\f[C]hig\ ci\ [\-m\ <msg>]\ [<file>...]\f[]: commit changes to version
-history
-.IP \[bu] 2
-\f[C]hig\ co\ [<ref>\ [<file>...]]\f[]: checkout files from a seperate
-branch
-.IP \[bu] 2
-\f[C]hig\ pull\ [<repo>]\f[]: pull changes from remote repository
-.IP \[bu] 2
-\f[C]hig\ push\ [<repo>]\f[]: push changes to remote repo
-.IP \[bu] 2
-\f[C]hig\ st\f[]: show repo status
-.IP \[bu] 2
-\f[C]hig\ diff\ [<ref>\ [<file>...]]\f[]: show diff between current
-files and specified ref
-.IP \[bu] 2
-\f[C]hig\ log\ \ [<ref>\ [<file>...]]\f[]: list revision history
-.IP \[bu] 2
-\f[C]hig\ lsbr\f[]: list branches
-.IP \[bu] 2
-\f[C]hig\ mkbr\ <branch>\f[]: make new branch
-.IP \[bu] 2
-\f[C]hig\ chbr\ <branch>\f[]: change active branch
-.IP \[bu] 2
-\f[C]hig\ rmbr\ <branch>\f[]: remove branch
-.IP \[bu] 2
-\f[C]hig\ lstag\f[]: list tags
-.IP \[bu] 2
-\f[C]hig\ mktag\ <tag>\ [<ref>]\f[]: make new tag
-.IP \[bu] 2
-\f[C]hig\ format\f[]: display local repo format
-.IP \[bu] 2
-\f[C]hig\ help\f[]: display help
-.IP \[bu] 2
-\f[C]hig\ pick\ <ref>\f[]: cherry pick a single patch
-.IP \[bu] 2
-\f[C]hig\ rebase\ [<ref>]\f[]: apply local commits onto upstream ref
-.IP \[bu] 2
-\f[C]hig\ pr\ [<branch>]\f[]: open a pull request on bitbucket or github
-.IP \[bu] 2
-\f[C]hig\ view\ [<file>]\f[]: open file or repo website
-.SS OPTIONS
-.SS EXAMPLES
-.SS SEE ALSO
+.TP
+.B \f[C]hig\ get\ <repo>\ [<directory>]\f[]
+get remote repo
+.RS
+.RE
+.TP
+.B \f[C]hig\ add\ <file>...\f[]
+add file to versioned files
+.RS
+.RE
+.TP
+.B \f[C]hig\ rm\ \ <file>...\f[]
+remove file from version control, leaving the existing contents on disk
+.RS
+.RE
+.TP
+.B \f[C]hig\ ci\ [\-m\ <msg>]\ [<file>...]\f[]
+commit changes to version history
+.RS
+.RE
+.TP
+.B \f[C]hig\ co\ [<ref>\ [<file>...]]\f[]
+checkout files from a seperate branch
+.RS
+.RE
+.TP
+.B \f[C]hig\ pull\ [<repo>]\f[]
+pull changes from remote repository
+.RS
+.RE
+.TP
+.B \f[C]hig\ push\ [<repo>]\f[]
+push changes to remote repo
+.RS
+.RE
+.TP
+.B \f[C]hig\ st\f[]
+show repo status
+.RS
+.RE
+.TP
+.B \f[C]hig\ diff\ [<ref>\ [<file>...]]\f[]
+show diff between current files and specified ref
+.RS
+.RE
+.TP
+.B \f[C]hig\ log\ \ [<ref>\ [<file>...]]\f[]
+list revision history
+.RS
+.RE
+.TP
+.B \f[C]hig\ lsbr\f[]
+list branches
+.RS
+.RE
+.TP
+.B \f[C]hig\ mkbr\ <branch>\f[]
+make new branch
+.RS
+.RE
+.TP
+.B \f[C]hig\ chbr\ <branch>\f[]
+change active branch
+.RS
+.RE
+.TP
+.B \f[C]hig\ rmbr\ <branch>\f[]
+remove branch
+.RS
+.RE
+.TP
+.B \f[C]hig\ lstag\f[]
+list tags
+.RS
+.RE
+.TP
+.B \f[C]hig\ mktag\ <tag>\ [<ref>]\f[]
+make new tag
+.RS
+.RE
+.TP
+.B \f[C]hig\ format\f[]
+display local repo format
+.RS
+.RE
+.TP
+.B \f[C]hig\ help\f[]
+display help
+.RS
+.RE
+.TP
+.B \f[C]hig\ pick\ <ref>\f[]
+cherry pick a single patch
+.RS
+.RE
+.TP
+.B \f[C]hig\ rebase\ [<ref>]\f[]
+apply local commits onto upstream ref
+.RS
+.RE
+.TP
+.B \f[C]hig\ pr\ [<branch>]\f[]
+open a pull request on bitbucket or github \f[C]hig\ view\ [<file>]\f[]
+.RS
+.RE
+open file or repo website
+.RS
+.RE
+.SH OPTIONS
+.SH EXAMPLES
+.SH SEE ALSO
 .PP
 bzr(1), cvs(1), darcs(1), git(1), hg(1), svn(1)

@@ -1,0 +1,11 @@
+#!/bin/sh
+# hig-cim: ci -m
+# usage: hig cim <msg>
+
+. "$_HIG_ROOT/lib/common.sh"
+
+CMD="hig-ci -m"
+
+debug CMD=$CMD
+
+exec $CMD "$@"
