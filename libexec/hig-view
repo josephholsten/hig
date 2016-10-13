@@ -9,12 +9,12 @@ if [ $1 ]; then
 fi
 
 head="$(git_head)"
-log head=$head
+debug head=$head
 remote_name="$(git config branch.${head}.remote)"
 if [ -z "$remote_name" ] ; then
   remote_name='origin'
 fi
-log remote_name=$remote_name
+debug remote_name=$remote_name
 
 branch_path="$(git config branch.${head}.merge)"
 debug branch_path=$branch_path
@@ -31,18 +31,37 @@ debug path=$path
 
 case ${host} in
     bitbucket.org )
-        url="https://${host}/${path}/src/${branch}/${file}"
+        if [ -z "$branch" ]; then
+            url="https://${host}/${path}/src"
+        elif [ -z "$file" ]; then
+            url="https://${host}/${path}/src/${branch}"
+        else
+            url="https://${host}/${path}/blob/${branch}/${file}"
+        fi
         ;;
     github.com )
-        url="https://${host}/${path}/blob/${branch}/${file}"
+        if [ -z "$branch" ]; then
+            url="https://${host}/${path}"
+        elif [ -z "$file" ]; then
+            url="https://${host}/${path}/tree/${branch}"
+        else
+            url="https://${host}/${path}/blob/${branch}/${file}"
+        fi
         ;;
     gitlab.com )
-        url="https://${host}/${path}/blob/${branch}/${file}"
+        if [ -z "$branch" ]; then
+            url="https://${host}/${path}"
+        elif [ -z "$file" ]; then
+            url="https://${host}/${path}/tree/${branch}"
+        else
+            url="https://${host}/${path}/blob/${branch}/${file}"
+        fi
         ;;
     * )
         log "Unknown host: ${host}, guessing at a URI"
         url="http://${host}/${path}/${branch}/${file}"
         ;;
 esac
+
 debug url=$url
 open $url
