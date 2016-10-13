@@ -7,27 +7,17 @@
 REPO=$1
 shift
 
-if expr $REPO : ".*\.git" >/dev/null; then
-  CMD="git clone"
-elif expr $REPO : "git:.*" >/dev/null; then
-  CMD="git clone"
-elif expr $REPO : ":pserver:.*" > /dev/null; then
-  export CVSREPO=$REPO
-  CMD="cvs co"
-elif expr $REPO : "http.*" >/dev/null; then
-  debug 'http: repo'
-  if debug 'attempting darcs' && curl -sf $REPO/_darcs/format >/dev/null; then
-    CMD="darcs get"
-  elif debug 'attempting git' && curl -sf "${REPO}.git/info/refs?service=git-upload-pack" >/dev/null; then
-    CMD="git clone"
-  elif debug 'attempting svn' && svn info --non-interactive --trust-server-cert $REPO >/dev/null; then
-    CMD="svn checkout"
-  elif debug 'attempting hg' && curl -sf "$REPO?cmd=lookup&key=tip" >/dev/null; then
+if   debug " hg identify  ${REPO}" &&  hg identify  "${REPO}" >/dev/null; then
     CMD="hg clone"
-  fi
+elif debug "git ls-remote ${REPO}" && git ls-remote "${REPO}" >/dev/null; then
+    CMD="git clone"
+elif debug "attempting darcs" && curl -sf "${REPO}/_darcs/format" >/dev/null; then
+    CMD="darcs get"
+elif debug "svn info      ${REPO}" && svn info --non-interactive --trust-server-cert "${REPO}" >/dev/null; then
+    CMD="svn checkout"
 else
-  echo "Unknown repo format: $REPO" >&2
-  exit 1
+    echo "Unknown repo format: $REPO" >&2
+    exit 1
 fi
 
-exec $CMD $REPO "$@"
+exec $CMD "$REPO" "$@"
