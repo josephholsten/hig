@@ -20,4 +20,4 @@ echo "  lsbr   list branches"
 echo "  mkbr   create new branch"
 echo "  rmbr   remove existing branch"
 echo "  pr     submit pull request"
-exit -1
+exit 1
