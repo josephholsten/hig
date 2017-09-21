@@ -4,8 +4,15 @@ I work on many open source projects, which often means I must deal with their ve
 
 ## Installation
 
+osx
+
     brew tap josephholsten/josephholsten
     brew install hig
+
+debian
+
+    curl -s https://packagecloud.io/install/repositories/josephholsten/hig/script.deb.sh | sudo bash
+    sudo apt install hig
 
 ## Opinions
 
