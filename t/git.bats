@@ -3,7 +3,8 @@
 load test_helper
 
 setup() {
-  HIGPATH="$(realpath "$BATS_TEST_DIRNAME/../bin")"
+  # HIGPATH="$(realpath "$BATS_TEST_DIRNAME/../bin")"
+  HIGPATH="$BATS_TEST_DIRNAME/../bin"
   PATH="$HIGPATH:$PATH"
   WORKING="$(mktmpdir)"
   cd "$WORKING"
@@ -39,7 +40,7 @@ teardown() {
 
   run hig st
   assert_equal "${lines[0]}" "On branch master"
-  assert_equal "${lines[1]}" "Initial commit"
+  assert_equal "${lines[1]}" "No commits yet"
   assert_equal "${lines[2]}" "Changes to be committed:"
   assert_equal "${lines[3]}" '  (use "git rm --cached <file>..." to unstage)'
   assert_equal "${lines[4]}" "	new file:   foo"
@@ -82,7 +83,7 @@ teardown() {
 
   hig co master foo
 
-  run hig diff head
+  run hig diff HEAD
   assert_equal "${lines[0]}" "diff --git a/foo b/foo"
   assert_match "${lines[1]}" "index ................ 100644"
   assert_equal "${lines[2]}" "--- a/foo"
@@ -99,7 +100,7 @@ teardown() {
   run hig st
 
   assert_equal "${lines[0]}"  "On branch master"
-  assert_equal "${lines[1]}"  "Initial commit"
+  assert_equal "${lines[1]}"  "No commits yet"
   assert_equal "${lines[2]}"  'nothing to commit (create/copy files and use "git add" to track)'
 }
 
