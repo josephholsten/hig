@@ -2,7 +2,7 @@
 # hig-cim: ci -m
 # usage: hig cim <msg>
 
-. "$_HIG_ROOT/lib/common.sh"
+. "$_HIG_LIB_PATH/common.sh"
 
 CMD="hig-ci -m"
 

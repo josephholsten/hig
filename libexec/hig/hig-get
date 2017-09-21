@@ -2,7 +2,7 @@
 # hig-get: get remote repo
 # usage: hig get <repo>
 
-. "$_HIG_ROOT/lib/common.sh"
+. "$_HIG_LIB_PATH/common.sh"
 
 REPO=$1
 shift

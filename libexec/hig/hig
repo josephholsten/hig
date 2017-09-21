@@ -28,7 +28,6 @@ fatal() {
   exit 1
 }
 
-
 # return the target of a symbolic link
 resolve_link() {
   READLINK=readlink
@@ -62,13 +61,13 @@ abs_dirname() {
 
 # add our libexec to PATH
 debug '$0'=$0
-libexec_path="$(abs_dirname "$0")"
-debug libexec_path=$libexec_path
-export PATH="${libexec_path}:$PATH"
+_HIG_LIBEXEC_PATH="$(abs_dirname "$0")"
+debug _HIG_LIBEXEC_PATH=$_HIG_LIBEXEC_PATH
+export PATH="${_HIG_LIBEXEC_PATH}:$PATH"
 
 # child, always remember where you came from
-export _HIG_ROOT="$(abs_dirname "$libexec_path")"
-debug _HIG_ROOT=$_HIG_ROOT
+export _HIG_LIB_PATH="$(abs_dirname "$(abs_dirname "$_HIG_LIBEXEC_PATH")")/lib/hig"
+debug _HIG_LIB_PATH=$_HIG_LIB_PATH
 
 # allow being called as `hig foo` or just `foo`
 base=$(basename "$0")
