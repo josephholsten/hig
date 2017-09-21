@@ -1,0 +1,3 @@
+#!/bin/sh
+co "$1"
+pull

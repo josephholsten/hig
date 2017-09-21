@@ -1,0 +1,25 @@
+#!/bin/sh
+# hig-mktag: make new tag
+# usage: hig mktag <tag> [<ref>]
+
+. "$_HIG_LIB_PATH/common.sh"
+
+TAG=`shift`
+
+fmt=`hig format`
+case $fmt in
+bzr )
+  CMD="bzr tag ${TAG}"
+  ;;
+git )
+  CMD="git tag ${TAG}"
+  ;;
+hg )
+  CMD="hg tag ${TAG}"
+  ;;
+* )
+  fatal "mktag: unknown command for repo type: $fmt"
+  ;;
+esac
+
+exec $CMD "$@"

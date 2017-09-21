@@ -1,0 +1,20 @@
+#!/bin/sh
+# hig-lsbr: list branches
+# usage: hig lsbr
+
+. "$_HIG_LIB_PATH/common.sh"
+
+fmt=`hig format`
+case $fmt in
+git )
+  CMD="git branch --list"
+  ;;
+hg )
+  CMD="hg branches"
+  ;;
+* )
+  fatal "lsbr: unknown command for repo type: $fmt"
+  ;;
+esac
+
+exec $CMD "$@"

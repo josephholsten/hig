@@ -1,0 +1,23 @@
+#!/bin/sh
+# hig-chbr: change active branch
+# usage: hig chbr <branch>
+
+. "$_HIG_LIB_PATH/common.sh"
+
+fmt=`hig format`
+case $fmt in
+git )
+  CMD="git checkout"
+  ;;
+hg )
+  CMD="hg checkout"
+  ;;
+svn )
+  fatal "chbr: Subversion checkout is probably not what you want"
+  ;;
+* )
+  fatal "chbr: unknown command for repo type: $fmt"
+  ;;
+esac
+
+exec $CMD "$@"

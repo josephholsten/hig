@@ -1,0 +1,23 @@
+#!/bin/sh
+# hig-lstag: list tags
+# usage: hig lstag
+
+. "$_HIG_LIB_PATH/common.sh"
+
+fmt=`hig format`
+case $fmt in
+bzr )
+  CMD="bzr tags"
+  ;;
+git )
+  CMD="git tag --list"
+  ;;
+hg )
+  CMD="hg tags"
+  ;;
+* )
+  fatal "lstag: unknown command for repo type: $fmt"
+  ;;
+esac
+
+exec $CMD "$@"

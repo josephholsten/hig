@@ -1,5 +1,5 @@
 ---
 sudo: false 
 dist: trusty
-language: c
-script: make check
+language: bash
+script: make test

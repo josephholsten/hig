@@ -1,0 +1,25 @@
+#!/bin/sh
+# hig-ci: commit changes to version history
+# usage: hig ci [-m <msg>] [<file>...]
+
+. "$_HIG_LIB_PATH/common.sh"
+
+fmt=`hig format`
+case $fmt in
+git )
+  CMD="git commit -a"
+  ;;
+svn )
+  CMD="svn commit"
+  ;;
+hg )
+  CMD="hg commit"
+  ;;
+* )
+  fatal "ci: unknown command for repo type: $fmt"
+  ;;
+esac
+
+debug CMD=$CMD
+
+exec $CMD "$@"

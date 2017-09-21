@@ -1,0 +1,23 @@
+#!/bin/sh
+# hig-st: show repo status
+# usage: hig st
+
+. "$_HIG_LIB_PATH/common.sh"
+
+fmt=`hig format`
+case $fmt in
+git )
+  CMD="git status"
+  ;;
+hg )
+  CMD="hg status"
+  ;;
+svn )
+  CMD="svn status"
+  ;;
+* )
+  fatal "st: unknown command for repo type: $fmt"
+  ;;
+esac
+
+exec $CMD "$@"

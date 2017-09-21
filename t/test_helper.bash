@@ -1,3 +1,20 @@
+#!/bin/sh
+
+realpath() {
+  cwd="$(pwd)"
+  path="$1"
+
+  while [ -n "$path" ]; do
+      nextdir="$(dirname "$path")"
+      cd "$nextdir"
+      name="$(basename "$path")"
+      path="$(readlink "$name" || true)"
+  done
+
+  echo $(pwd)/$name
+  cd "$cwd"
+}
+
 mktmpdir() {
   mktemp -d ${TMPDIR:-/tmp}/${1:-tmp}.XXXXXXXXXX
 }

@@ -1,0 +1,23 @@
+#!/bin/sh
+# hig-add: add file to versioned files
+# usage:  hig add <file>...
+
+. "$_HIG_LIB_PATH/common.sh"
+
+fmt=`hig format`
+case $fmt in
+git )
+  CMD="git add"
+  ;;
+hg )
+  CMD="hg add"
+  ;;
+svn )
+  CMD="svn add"
+  ;;
+* )
+  fatal "add: unknown command for repo type: $fmt"
+  ;;
+esac
+
+exec $CMD "$@"

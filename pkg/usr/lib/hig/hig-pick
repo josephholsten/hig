@@ -1,0 +1,19 @@
+#!/bin/sh
+# hig-pick: cherry pick a single patch
+# usage: hig pick <ref>
+
+. "$_HIG_LIB_PATH/common.sh"
+
+REF=`shift`
+
+fmt=`hig format`
+case $fmt in
+git )
+  CMD="git cherry-pick ${REF}"
+  ;;
+* )
+  fatal "pick: unknown command for repo type: $fmt"
+  ;;
+esac
+
+exec $CMD "$@"

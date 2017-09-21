@@ -1,0 +1,24 @@
+#!/bin/sh
+# hig-rm: remove file from version control, leaving the
+# existing contents on disk
+# usage: hig rm <file>...
+
+. "$_HIG_LIB_PATH/common.sh"
+
+fmt=`hig format`
+case $fmt in
+git )
+  CMD="git rm --cached"
+  ;;
+hg )
+  CMD="hg remove --after --force"
+  ;;
+svn )
+  CMD="svn delete --keep-local"
+  ;;
+* )
+  fatal "rm: unknown command for repo type: $fmt"
+  ;;
+esac
+
+exec $CMD "$@"
