@@ -2,7 +2,7 @@
 # hig-push: push changes to remote repo
 # usage: hig push [<repo>]
 
-. "$_HIG_ROOT/lib/common.sh"
+. "$_HIG_LIB_PATH/common.sh"
 
 fmt=`hig format`
 case $fmt in
@@ -14,7 +14,7 @@ hg )
   ;;
 svn )
   echo THIS IS NOT WHAT YOU WANT >&2
-  exit -1
+  exit 1
   ;;
 * )
   fatal "push: unknown command for repo type: $fmt"

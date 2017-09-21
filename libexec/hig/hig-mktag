@@ -2,7 +2,7 @@
 # hig-mktag: make new tag
 # usage: hig mktag <tag> [<ref>]
 
-. "$_HIG_ROOT/lib/common.sh"
+. "$_HIG_LIB_PATH/common.sh"
 
 TAG=`shift`
 

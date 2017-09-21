@@ -2,7 +2,7 @@
 # hig-pr: open a pull request in github or bitbucket
 # usage: hig pr [<base-branch>]
 
-. "$_HIG_ROOT/lib/common.sh"
+. "$_HIG_LIB_PATH/common.sh"
 
 if [ "$1" = "-h" ]; then
     fatal "usage: hig pr [<base-branch>]"
@@ -14,7 +14,9 @@ if [ "${fmt}" != git ]; then
 fi
 
 base="$1"
-shift || :
+if [ "$#" != "0" ]; then
+  shift
+fi
 if [ -z "${base}" ]; then
     base=master
 fi

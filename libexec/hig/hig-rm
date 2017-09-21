@@ -3,7 +3,7 @@
 # existing contents on disk
 # usage: hig rm <file>...
 
-. "$_HIG_ROOT/lib/common.sh"
+. "$_HIG_LIB_PATH/common.sh"
 
 fmt=`hig format`
 case $fmt in
