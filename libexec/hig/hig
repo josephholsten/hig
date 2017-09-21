@@ -74,7 +74,9 @@ base=$(basename "$0")
 debug base=$base
 if [ "$base" = "hig" ]; then
   command="$1"
-  shift || :  # allow shifting to nothing
+  if [ "$#" != "0" ]; then
+    shift
+  fi
 else
   command="$base"
 fi

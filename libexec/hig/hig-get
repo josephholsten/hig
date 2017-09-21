@@ -4,8 +4,7 @@
 
 . "$_HIG_LIB_PATH/common.sh"
 
-REPO=$1
-shift
+REPO=`shift`
 
 if   debug " hg identify  ${REPO}" &&  hg identify  "${REPO}" >/dev/null; then
     CMD="hg clone"

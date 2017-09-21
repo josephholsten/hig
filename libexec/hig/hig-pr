@@ -14,7 +14,9 @@ if [ "${fmt}" != git ]; then
 fi
 
 base="$1"
-shift || :
+if [ "$#" != "0" ]; then
+  shift
+fi
 if [ -z "${base}" ]; then
     base=master
 fi
