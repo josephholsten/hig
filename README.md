@@ -20,7 +20,7 @@ debian
 * `rm` should not remove files from disk
 * `diff` should use extended format
 
-* require on modern versions of clients
+* require modern versions of clients
 * GPG support
 
 ## Commands
