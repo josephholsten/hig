@@ -100,7 +100,7 @@ teardown() {
   run hig st
 
   assert_equal "${lines[0]}"  "On branch master"
-  assert_equal "${lines[1]}"  "Initial commit"
+  assert_equal "${lines[1]}"  "No commits yet"
   assert_equal "${lines[2]}"  'nothing to commit (create/copy files and use "git add" to track)'
 }
 
