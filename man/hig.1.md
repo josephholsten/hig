@@ -86,11 +86,9 @@ Supported commands are:
 # EXAMPLES
 
 
-get a remote repo
+Get a remote repo
 
     hig get git://git.kernel.org/pub/scm/git/git.git
-
-
 
     echo foo > foo
     hig add foo
@@ -106,19 +104,19 @@ get a remote repo
     hig st
 
 
-make a new branch `feature-unicorn`, switching to it
+Make a new branch `feature-unicorn`, switching to it
 
     hig mkbr feature-unicorn
 
-change branch to `master`
+Change branch to `master`
 
     hig chbr master
 
-remove branch `feature-unicorn`
+Remove branch `feature-unicorn`
 
     hig rmbr feature-unicorn
 
-make a new tag `0.1.0`
+Make a new tag `0.1.0`
 
     hig mktag 0.1.0
 
