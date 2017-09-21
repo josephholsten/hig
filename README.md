@@ -66,23 +66,24 @@ file to get it right now!
 
 ## Supports
 
-- git http://www.git-scm.com/
-- hg http://mercurial.selenic.com/
-- svn https://subversion.apache.org/
-- bzr http://bazaar.canonical.com/en/
+- [git](http://www.git-scm.com/)
+- [hg](https://www.mercurial-scm.org/)
+- [svn](https://subversion.apache.org/)
+- [bzr](http://bazaar.canonical.com/)
 
 ## In Progress
 
-* cvs http://www.nongnu.org/cvs/
-cvs -d:pserver:anonymous@ex-vi.cvs.sourceforge.net:/cvsroot/ex-vi co ex-vi
-get  pserver:anonymous@ex-vi.cvs.sourceforge.net:/cvsroot/ex-vi
+-   [cvs](http://www.nongnu.org/cvs/)
+
+    cvs -d:pserver:anonymous@ex-vi.cvs.sourceforge.net:/cvsroot/ex-vi co ex-vi
+    get  pserver:anonymous@ex-vi.cvs.sourceforge.net:/cvsroot/ex-vi
 
 
 ## Does not support
 
-- darcs http://darcs.net/
-* rcs https://www.gnu.org/software/rcs/
-* sccs http://sccs.sourceforge.net/
-* camp http://projects.haskell.org/camp/
-* fossil http://www.fossil-scm.org/
-* p4 http://www.perforce.com/
+- [darcs](http://darcs.net/)
+* [rcs](https://www.gnu.org/software/rcs/)
+* [sccs](http://sccs.sourceforge.net/)
+* [camp](http://projects.haskell.org/camp/)
+* [fossil](http://www.fossil-scm.org/)
+* [p4](http://www.perforce.com/)
