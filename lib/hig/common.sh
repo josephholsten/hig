@@ -26,7 +26,7 @@ esed() {
     if (echo | sed -E >/dev/null 2>/dev/null); then
         sed -E "$@"
     # check for GNU sed
-    elif (echo | sed -r >/dev/null 2>/dev/null); then
+    elif (echo | sed -r '' >/dev/null 2>/dev/null); then
         sed -r "$@"
     else
         fatal "could not find BSD or GNU sed(1); it's needed for extended regular expressions"
