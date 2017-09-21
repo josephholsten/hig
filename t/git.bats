@@ -3,7 +3,8 @@
 load test_helper
 
 setup() {
-  HIGPATH="$(realpath "$BATS_TEST_DIRNAME/../bin")"
+  # HIGPATH="$(realpath "$BATS_TEST_DIRNAME/../bin")"
+  HIGPATH="$BATS_TEST_DIRNAME/../bin"
   PATH="$HIGPATH:$PATH"
   WORKING="$(mktmpdir)"
   cd "$WORKING"
