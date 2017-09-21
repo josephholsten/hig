@@ -83,7 +83,7 @@ teardown() {
 
   hig co master foo
 
-  run hig diff head
+  run hig diff HEAD
   assert_equal "${lines[0]}" "diff --git a/foo b/foo"
   assert_match "${lines[1]}" "index ................ 100644"
   assert_equal "${lines[2]}" "--- a/foo"
