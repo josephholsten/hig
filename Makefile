@@ -155,3 +155,6 @@ c-clean:
 	rm -rf pkg
 	rm -f *.deb
 	rm -f tags
+
+lint:
+	shellcheck -s sh -f gcc $(LIB_FILES) $(LIBEXEC_FILES)
