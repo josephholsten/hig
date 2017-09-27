@@ -6,6 +6,6 @@
 
 CMD="hig-ci -m"
 
-debug CMD=$CMD
+debug "CMD=$CMD"
 
 exec $CMD "$@"

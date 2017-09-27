@@ -7,7 +7,7 @@
 REF="$1"
 shift
 
-fmt=`hig format`
+fmt=$(hig format)
 case $fmt in
 git )
   CMD="git cherry-pick ${REF}"

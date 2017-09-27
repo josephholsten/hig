@@ -5,7 +5,7 @@
 
 . "$_HIG_LIB_PATH/common.sh"
 
-fmt=`hig format`
+fmt=$(hig format)
 case $fmt in
 git )
   CMD="git rm --cached"

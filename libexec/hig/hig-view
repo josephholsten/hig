@@ -4,30 +4,30 @@
 
 . "$_HIG_LIB_PATH/common.sh"
 
-if [ $1 ]; then
-  file=`git ls-files --full-name $1`;
+if [ "$1" ]; then
+  file=$(git ls-files --full-name "$1");
 fi
 
 head="$(git_head)"
-debug head=$head
-remote_name="$(git config branch.${head}.remote)"
+debug "head=$head"
+remote_name="$(git config branch."${head}".remote)"
 if [ -z "$remote_name" ] ; then
   remote_name='origin'
 fi
 debug remote_name=$remote_name
 
-branch_path="$(git config branch.${head}.merge)"
-debug branch_path=$branch_path
+branch_path="$(git config branch."${head}".merge)"
+debug "branch_path=$branch_path"
 branch=$(echo "${branch_path}" | esed 's/.*\/([^/]*)/\1/')
-debug branch=$branch
+debug "branch=$branch"
 
 remote_url="$(git config remote.${remote_name}.url)"
-debug remote_url=$remote_url
+debug "remote_url=$remote_url"
 
-host="$(git_host_from_repo_url ${remote_url})"
-debug host=$host
-path=$(git_path_from_repo_url ${remote_url})
-debug path=$path
+host="$(git_host_from_repo_url "${remote_url}")"
+debug "host=$host"
+path=$(git_path_from_repo_url "${remote_url}")
+debug "path=$path"
 
 case ${host} in
     bitbucket.org )
@@ -63,5 +63,5 @@ case ${host} in
         ;;
 esac
 
-debug url=$url
-open $url
+debug "url=$url"
+open "$url"

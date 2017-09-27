@@ -7,7 +7,7 @@
 BRANCH="$1"
 shift
 
-fmt=`hig format`
+fmt=$(hig format)
 case $fmt in
 bzr )
   CMD="bzr branch --switch ${BRANCH}"
