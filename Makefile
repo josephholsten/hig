@@ -1,6 +1,6 @@
 .POSIX:
 
-VERSION=0.4.3
+VERSION=0.4.4
 
 # Installation enviroment specific vars
 INSTALL=install
