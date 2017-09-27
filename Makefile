@@ -1,6 +1,6 @@
 .POSIX:
 
-VERSION=0.4.3
+VERSION=0.4.4
 
 # Installation enviroment specific vars
 INSTALL=install
@@ -155,3 +155,6 @@ c-clean:
 	rm -rf pkg
 	rm -f *.deb
 	rm -f tags
+
+lint:
+	shellcheck -s sh -f gcc $(LIB_FILES) $(LIBEXEC_FILES)

@@ -39,39 +39,46 @@ resolve_link() {
 
 # return the cannonical directory containing a file
 abs_dirname() {
-  local cwd="$(pwd)"
-  trace cwd=$cwd
-  local path="$1"
-  trace path=$path
+  local cwd
+  local path
+
+  cwd="$(pwd)"
+  trace "cwd=$cwd"
+  path="$1"
+  trace "path=$path"
 
   while [ -n "$path" ]; do
-    local nextdir="$(dirname "$path")"
-    trace nextdir=$nextdir
+    local nextdir
+    local name
+    nextdir="$(dirname "$path")"
+    trace "nextdir=$nextdir"
     cd "$nextdir"
-    local name="$(basename "$path")"
-    trace name=$name
+    name="$(basename "$path")"
+    trace "name=$name"
     path="$(resolve_link "$name" || true)"
-    trace path=$path
+    trace "path=$path"
   done
 
-  trace pwd=$(pwd)
+  trace "pwd=$(pwd)"
   pwd
   cd "$cwd"
 }
 
 # add our libexec to PATH
-debug '$0'=$0
+debug "\$0=$0"
 _HIG_LIBEXEC_PATH="$(abs_dirname "$0")"
-debug _HIG_LIBEXEC_PATH=$_HIG_LIBEXEC_PATH
-export PATH="${_HIG_LIBEXEC_PATH}:$PATH"
+debug "_HIG_LIBEXEC_PATH=$_HIG_LIBEXEC_PATH"
+PATH="${_HIG_LIBEXEC_PATH}:$PATH"
+export PATH
 
 # child, always remember where you came from
-export _HIG_LIB_PATH="$(abs_dirname "$(abs_dirname "$_HIG_LIBEXEC_PATH")")/lib/hig"
-debug _HIG_LIB_PATH=$_HIG_LIB_PATH
+_HIG_LIB_PATH="$(abs_dirname "$(abs_dirname "$_HIG_LIBEXEC_PATH")")/lib/hig"
+export _HIG_LIB_PATH
+debug "_HIG_LIB_PATH=$_HIG_LIB_PATH"
 
 # allow being called as `hig foo` or just `foo`
 base=$(basename "$0")
-debug base=$base
+debug "base=$base"
 if [ "$base" = "hig" ]; then
   command="$1"
   if [ "$#" != "0" ]; then
@@ -80,7 +87,7 @@ if [ "$base" = "hig" ]; then
 else
   command="$base"
 fi
-debug command=$command
+debug "command=$command"
 
 case "$command" in
 "" | "hig" | "-h" | "--help" )

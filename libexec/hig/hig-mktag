@@ -7,7 +7,7 @@
 TAG="$1"
 shift
 
-fmt=`hig format`
+fmt=$(hig format)
 case $fmt in
 bzr )
   CMD="bzr tag ${TAG}"
